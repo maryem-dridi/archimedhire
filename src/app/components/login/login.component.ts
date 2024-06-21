@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
+  public resetPasswordEmail !: string;
+  public isValidEmail !: boolean;
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required,Validators.minLength(5)],
-      password: ['', Validators.required],
+      password: ['', Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}')],
     });
   }
 
@@ -60,4 +62,5 @@ export class LoginComponent implements OnInit {
       ValidateForm.validateAllFormFields(this.loginForm);
     }
   }
+
 }
