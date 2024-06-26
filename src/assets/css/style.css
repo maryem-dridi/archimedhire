@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 :root {
     --primary: #4747F0;
-    --light: #F0FBFC;
+    --light: #E7E7FD;
     --dark: #181d38;
 }
 
@@ -36,6 +36,16 @@
     opacity: 1;
 }
 
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 0;
+  margin-bottom: .5rem;
+
+
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #181d38
+}
 
 /*** Button ***/
 .btn {
@@ -80,7 +90,7 @@
 .navbar .dropdown-toggle::after {
     border: none;
     content: "\f107";
-    font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands", serif;
     font-weight: 900;
     vertical-align: middle;
     margin-left: 8px;
@@ -263,6 +273,13 @@
     background: var(--primary);
 }
 
+.text-bottom {
+  color: #E7E7FD;
+}
+.text-bottom:hover {
+  color: #4747F0;
+}
+
 .service-item * {
     transition: .5s;
 }
@@ -431,4 +448,43 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+.img {
+  width: 364px;
+  height: 243px;
+  background: transparent;
+  border-radius: 15px;
+  opacity: 1;
+}
+.img-background {
+  background-color: #4747F0;
+  border-radius: 15px;
+  width: 364px;
+  height: 243px;
+  top: 15px;
+  left: 15px;
+  z-index: -1;
+}
+
+.btn{
+  background: #4747F0;
+  border: 3px solid #4747F0;
+  border-radius: 15px;
+  opacity: 1;
+}
+.btn:hover{
+  background: #FFFFFF;
+  color: #4747F0;
+  border-color: #4747F0;
+}
+
+.btn:focus{
+  background: transparent;
+  color: #4747F0;
+  border-color: #4747F0;
+}
+
+.custom-h1{
+  font-family: "Bauhaus93", sans-serif;
 }

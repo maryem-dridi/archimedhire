@@ -16,20 +16,24 @@ export class LoginComponent implements OnInit {
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
-  public resetPasswordEmail !: string;
-  public isValidEmail !: boolean;
+  email={
+    resetPasswordEmail :"",
+    isValidEmail:false,
+  }
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
     private toast: NgToastService,
     private userStore: UserStoreService
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required,Validators.minLength(5)],
-      password: ['', Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}')],
+      Email: ['', [Validators.required,Validators.email]],
+      Password: ['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}')]],
     });
   }
 
@@ -38,20 +42,29 @@ export class LoginComponent implements OnInit {
     this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
     this.isText ? (this.type = 'text') : (this.type = 'password');
   }
+
+  sendResetEmail() {
+      this.auth.sendResetPasswordLink(this.email.resetPasswordEmail).subscribe(
+        (res) => {
+          this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
+        }
+      )
+  }
   onSubmit() {
+    console.log(this.loginForm.value);
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       this.auth.signIn(this.loginForm.value).subscribe({
         next: (res) => {
-          console.log(res.message);
-          this.loginForm.reset();
-          this.auth.storeToken(res.accessToken);
-          this.auth.storeRefreshToken(res.refreshToken);
+          console.log(res);
+          // this.loginForm.reset();
+          this.auth.storeToken(res.token);
+          //this.auth.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.auth.decodedToken();
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
           this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
-          this.router.navigate(['dashboard'])
+          this.router.navigate(['about'])
         },
         error: (err) => {
           this.toast.error({detail:"ERROR", summary:"Something when wrong!", duration: 5000});

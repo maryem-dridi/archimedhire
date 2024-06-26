@@ -3,19 +3,20 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt'
 import { TokenApiModel } from '../models/token-api.model';
+import {ResetPasswordModel} from "../models/reset-password.model";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl: string = 'https://localhost:7058/api/User/';
+  private baseUrl: string = 'http://localhost:5248/api/User/';
   private userPayload:any;
   constructor(private http: HttpClient, private router: Router) {
     this.userPayload = this.decodedToken();
    }
 
   signUp(userObj: any) {
-    return this.http.post<any>(`${this.baseUrl}register`, userObj)
+    return this.http.post<any>(`${this.baseUrl}registre`, userObj)
   }
 
   signIn(loginObj : any){
@@ -26,6 +27,14 @@ export class AuthService {
     localStorage.clear();
     this.router.navigate(['login'])
   }
+
+  sendResetPasswordLink(email: string){
+    return this.http.post<any>(`${this.baseUrl}send-reset-email/${email}`,{});
+  }
+  resetPassword(item:ResetPasswordModel){
+    return this.http.post<any>(`${this.baseUrl}reset-password`,item);
+  }
+
 
   storeToken(tokenValue: string){
     localStorage.setItem('token', tokenValue)
@@ -42,13 +51,13 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean{
+    console.log(localStorage.getItem('token'))
     return !!localStorage.getItem('token')
   }
 
   decodedToken(){
     const jwtHelper = new JwtHelperService();
     const token = this.getToken()!;
-    console.log(jwtHelper.decodeToken(token))
     return jwtHelper.decodeToken(token)
   }
 

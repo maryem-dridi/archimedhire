@@ -10,13 +10,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { PostulationComponent } from './components/postulation/postulation.component';
+import { AboutComponent } from './components/about/about.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    PostulationComponent,
+    AboutComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

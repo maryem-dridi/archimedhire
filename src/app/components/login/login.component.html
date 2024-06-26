@@ -3,37 +3,40 @@
     <div class="row g-5">
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
         <div class="position-relative h-100">
-          <img class="img-fluid position-absolute w-100 h-100" src="/assets/img/00.jpeg" alt="" style="object-fit: cover;">
+          <img class="img-fluid position-absolute w-100 h-100 img" src="/assets/img/00.jpeg" alt="" style="object-fit: cover;">
+          <div class="img-fluid position-absolute w-100 h-100 img-background"></div>
         </div>
       </div>
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-        <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
-        <h1 class="mb-4">Welcome to Archimed</h1>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h6 class="section-title bg-white text-start text-primary pe-3">Sign in</h6>
+        <h1 class="mb-4 custom-h1">Welcome to Archimed</h1>
+        <form [formGroup]="this.loginForm" (ngSubmit)="onSubmit()">
           <div class="row g-3">
             <div class="col-12">
               <div class="form-floating">
-                <input type="text" formControlName="username" class="form-control" id="subject" placeholder="Subject">
-                <label for="subject">User name</label>
-                <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')" class="text-danger">*Username is required*</small>
+                <input type="text" formControlName="Email" class="form-control" id="subject" placeholder="username">
+                <label for="subject">Email</label>
+                <small *ngIf="loginForm.controls['Email'].dirty && loginForm.hasError('required','Email')"  class="text-danger">*Email is required*</small>
+                <small *ngIf="this.loginForm.get('Email')?.hasError('email')"  class="text-danger">*Le format est incorrect*</small>
 
               </div>
             </div>
             <div class="col-12">
               <div class="form-floating">
-                <input type="text" formControlName="password" class="form-control" id="subject" placeholder="Subject">
-                <label for="subject">password</label>
-                <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*Password is required*</small>
-                <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('pattern','password')" class="text-danger">*Password is required*</small>
+                <input type="Password" formControlName="Password" class="form-control" id="Password" placeholder="Subject">
+                <label for="subject">Password</label>
 
-                <div class="form-inline fr mt-4"> <a id="forgot" data-bs-toggle="modal" data-bs-target="#exampleModal" class="font-weight-bold">Forgot password?</a> </div>
+                <small *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('required','Password')" class="text-danger">*Password is required*</small>
+                <small *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('pattern','Password')" class="text-danger">*Le format est incorrect*</small>
+
+                <div class="form-inline fr mt-4"> <a id="forgot" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-bottom">Forgot Password?</a> </div>
               </div>
             </div>
             <div class="col-12">
               <button class="btn btn-primary w-100 py-3" type="submit">Login</button>
             </div>
           </div>
-          <div class="text-center pt-4 text-muted">Don't have an account? <a id="forgot" href="#" routerLink="/signup">Sign up</a> </div>
+          <div class="text-center pt-4 text-muted">Don't have an account? <a id="forgot" href="#" routerLink="/signup" class="text-bottom">Sign up</a> </div>
 
         </form>
       </div>
@@ -45,7 +48,7 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <p class="modal-title" id="exampleModalLabel"> <span style="font-size: 25px;font-weight:700">Forget your password?</span><br>
+              <p class="modal-title" id="exampleModalLabel"> <span style="font-size: 25px;font-weight:700">Forget your Password?</span><br>
                   <small>Please provide your E-mail we will send the reset link</small></p>
 
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -54,13 +57,15 @@
 
           <div class="modal-body">
               <div class="form-group pt-3">
-                  <div class="input-field"> <span class="fa fa-user p-2"></span> <input type="text" placeholder="Email"> </div>
+                <div class="form-floating">
+                <input type="text" [(ngModel)]="email.resetPasswordEmail" class="form-control" id="subject" placeholder="Email">
+                <label for="subject">Email</label>
+                </div>
               </div>
-              <small class="text-danger">*Email is required*</small>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send</button>
+              <button type="button" class="btn btn-primary" (click)="sendResetEmail()">Send</button>
           </div>
       </div>
   </div>
