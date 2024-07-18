@@ -13,6 +13,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { PostulationComponent } from './components/postulation/postulation.component';
 import { AboutComponent } from './components/about/about.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { PopulationComponent } from './components/population/population.component';
+import { PopulationDetailComponent } from './components/population/population-detail/population-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ResetComponent } from './components/reset/reset.component';
     DashboardComponent,
     PostulationComponent,
     AboutComponent,
-    ResetComponent
+    ResetComponent,
+    PopulationComponent,
+    PopulationDetailComponent,
   ],
   imports: [
     BrowserModule,

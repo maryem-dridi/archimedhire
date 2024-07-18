@@ -6,11 +6,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import {AboutComponent} from "./components/about/about.component";
 import {ResetComponent} from "./components/reset/reset.component";
+import {PostulationComponent} from "./components/postulation/postulation.component";
+import {Population} from "./models/population";
+import {PopulationDetailComponent} from "./components/population/population-detail/population-detail.component";
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
   {path:'reset', component:ResetComponent},
+  {path:'postuler', component:PostulationComponent},
+  { path: 'population/detail/:id', component: PopulationDetailComponent },
   {path:'about', component:AboutComponent, canActivate:[AuthGuard]},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'**', component:AboutComponent, canActivate:[AuthGuard]}

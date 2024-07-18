@@ -16,9 +16,8 @@
               <div class="form-floating">
                 <input type="text" formControlName="Email" class="form-control" id="subject" placeholder="username">
                 <label for="subject">Email</label>
-                <small *ngIf="loginForm.controls['Email'].dirty && loginForm.hasError('required','Email')"  class="text-danger">*Email is required*</small>
+                <small *ngIf="this.loginForm.controls['Email'].dirty && loginForm.hasError('required','Email')"  class="text-danger">*Email is required*</small>
                 <small *ngIf="this.loginForm.get('Email')?.hasError('email')"  class="text-danger">*Le format est incorrect*</small>
-
               </div>
             </div>
             <div class="col-12">
