@@ -1,19 +1,20 @@
 export class User {
-  public constructor(nom: string, prenom:string, email: string, password: string, adresse: string, pieceJointe:File) {
+  public constructor(nom: string, prenom:string, email: string, password: string, adresse: string, pieceJointe:File|null,score:number) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.password = password;
         this.adresse = adresse;
         this.pieceJointe = pieceJointe;
+        this.score = score
   }
   nom:string;
   prenom:string;
   email:string;
   password:string;
   adresse:string;
-  pieceJointe:File;
-
+  pieceJointe:File|null;
+  score:number;
   /*public string? Nom { get; set; }
 public string? Prenom { get; set; }
   [EmailAddress]

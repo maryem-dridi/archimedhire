@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../../helpers/validationform';
 import { Router } from '@angular/router';
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-signup',
@@ -15,14 +16,14 @@ export class SignupComponent implements OnInit {
   type: string = 'password';
   isText: boolean = false;
   eyeIcon:string = "fa-eye-slash"
-  constructor(private fb : FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb : FormBuilder, private auth: AuthService, private router: Router, private toastService:NgToastService) { }
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
       Nom:['', Validators.required],
       Prenom:['', Validators.required],
-      Email:['', Validators.required],
-      Password:['', Validators.required]
+      Email: ['', [Validators.required,Validators.email]],
+      Password: ['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}')]],
     })
   }
 
@@ -46,10 +47,12 @@ export class SignupComponent implements OnInit {
           console.log(res.message);
           this.signUpForm.reset();
           this.router.navigate(['login']);
-          alert(res.message)
+          this.toastService.success({detail:"SUCCESS", summary:res.message, duration: 5000});
         }),
         error:(err=>{
-          alert(err?.error.message)
+          console.log(err?.error.message)
+          this.toastService.error({detail:"ERROR", summary:err?.error.message, duration: 5000});
+
         })
       })
     } else {

@@ -15,6 +15,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { PopulationComponent } from './components/population/population.component';
 import { PopulationDetailComponent } from './components/population/population-detail/population-detail.component';
+import { FormPostulationComponent } from './components/postulation/form-postulation/form-postulation.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PopulationDetailComponent } from './components/population/population-de
     ResetComponent,
     PopulationComponent,
     PopulationDetailComponent,
+    FormPostulationComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import {User} from "./user";
 import {Population} from "./population";
 
 export class Postulation {
-  public constructor(motivationText:string,postuledDate:Date,userFk:number,populationFk:number,user:User,population:Population) {
+  public constructor(motivationText:string,postuledDate:Date,userFk:number,populationFk:number,user:User,population:Population|null) {
       this.motivationText=motivationText;
       this.postuledDate=postuledDate;
       this.userFk=userFk;
@@ -15,5 +15,5 @@ export class Postulation {
   userFk:number;
   populationFk:number;
   user:User;
-  population:Population;
+  population:Population|null;
 }

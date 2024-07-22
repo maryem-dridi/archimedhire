@@ -67,8 +67,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['about'])
         },
         error: (err) => {
-          this.toast.error({detail:"ERROR", summary:"Something when wrong!", duration: 5000});
-          console.log(err);
+          this.toast.error({detail:"ERROR", summary:err.Error.message, duration: 5000});
         },
       });
     } else {

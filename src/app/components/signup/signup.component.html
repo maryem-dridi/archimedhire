@@ -42,7 +42,9 @@
             <div class="col-12">
               <div class="form-floating">
                 <input type="text" formControlName="Password" class="form-control" id="subject" placeholder="Subject">
-                <label for="subject">Password</label>
+                <label for="subject">Mot de passe</label>
+                <small *ngIf="signUpForm.controls['Password'].dirty && signUpForm.hasError('pattern','Password')" class="text-danger">*Password est valid*</small>
+
               </div>
             </div>
 
