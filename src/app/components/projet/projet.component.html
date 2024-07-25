@@ -1,0 +1,122 @@
+<div class="container-xxl py-5">
+  <section class="center_section">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal" aria-controls="addProjectModal">
+
+      Ajouter projet
+    </button>
+  </section>
+
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center text-primary px-3">Projets Disponibles</h6>
+      <h1 class="mb-5" *ngIf="projets?.length! > 0">Projets valables</h1>
+      <h1 class="mb-5" *ngIf="projets?.length == null || projets?.length == 0">Aucun Projet disponible</h1>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6 wow fadeInUp" *ngFor="let projet of projets; let i = index">
+        <div class="course-item bg-light">
+          <div class="position-relative overflow-hidden">
+            <img class="img-fluid" src="assets/img/course-2.jpg" alt="">
+            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+            </div>
+          </div>
+          <div class="text-center p-4 pb-0">
+            <h5 class="mb-4">{{projet.nom}} - {{projet.description}}</h5>
+          </div>
+          <div class="d-flex border-top">
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar text-primary me-2"></i>Début: {{projet.dateDebut | date}}</small>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar text-primary me-2"></i>Fin: {{projet.dateFin | date}}</small>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>Fin: {{projet.duree }}</small>
+            <small class="flex-fill text-center py-2"><i class="fa fa-cogs text-primary me-2"></i>{{ projet.strategieAdopte }}</small>
+          </div>
+          <div class="d-flex border-top center_section">
+            <button class="btn btn-danger" (click)="deleteProjet(projet.projetId)">Delete</button>
+            <button class="btn btn-primary" (click)="editProjet(projet)">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProjectModalLabel">Ajouter un Projet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <div class="input-container">
+            <label for="nom2">Nom projet</label>
+            <input type="text" id="nom2" class="form-control" placeholder="Nom" name="nom" [(ngModel)]="projet_add.nom" required>
+          </div>
+          <div class="input-container">
+            <label for="dateDebut" class="form-label">Date de début</label>
+            <input type="date" id="dateDebut" class="form-control" name="dateDebut" [(ngModel)]="projet_add.dateDebut" required>
+          </div>
+          <div class="input-container">
+            <label for="dateFin" class="form-label">Date de fin</label>
+            <input type="date" id="dateFin" class="form-control" name="dateFin" [(ngModel)]="projet_add.dateFin" required>
+          </div>
+          <div class="input-container">
+            <label for="description">Description</label>
+            <input type="text" id="description" class="form-control" placeholder="Description" name="description" [(ngModel)]="projet_add.description" required>
+          </div>
+          <div class="input-container">
+            <label for="strategieAdopte">Stratégie Adoptée</label>
+            <input type="text" id="strategieAdopte" class="form-control" placeholder="Stratégie Adoptée" name="strategieAdopte" [(ngModel)]="projet_add.strategieAdopte" required>
+          </div>
+          <div class="input-container">
+            <label for="groupeFk" class="form-label">ID Groupe</label>
+            <input type="number" id="groupeFk" class="form-control" placeholder="ID du Groupe" name="groupeFk" [(ngModel)]="projet_add.groupeFk" required>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="ajouterProjet()">Ajouter</button>
+          <button type="button" class="btn btn-secondary" (click)="viderChamps()">Annuler</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Editing a Project -->
+<div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProjectModalLabel">Modifier le Projet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <div class="input-container">
+            <label for="nom">Nom projet</label>
+            <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" [(ngModel)]="projet_edit.nom" required>
+          </div>
+          <div class="input-container">
+            <label for="dateDebut" class="form-label">Date de début</label>
+            <input type="date" class="form-control" name="dateDebut" [(ngModel)]="projet_edit.dateDebut" required>
+          </div>
+          <div class="input-container">
+            <label for="dateFin" class="form-label">Date de fin</label>
+            <input type="date" class="form-control" name="dateFin" [(ngModel)]="projet_edit.dateFin" required>
+          </div>
+          <div class="input-container">
+            <label for="description2">Description</label>
+            <input type="text" id="description2" class="form-control" placeholder="Description" name="description" [(ngModel)]="projet_edit.description" required>
+          </div>
+          <div class="input-container">
+            <label for="strategieAdopte2">Stratégie Adoptée</label>
+            <input type="text" id="strategieAdopte2" class="form-control" placeholder="Stratégie Adoptée" name="strategieAdopte" [(ngModel)]="projet_edit.strategieAdopte" required>
+          </div>
+          <div class="input-container">
+            <label for="groupeFk" class="form-label">ID Groupe</label>
+            <input type="number" class="form-control" placeholder="ID du Groupe" name="groupeFk" [(ngModel)]="projet_edit.groupeFk" required>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="updateProjet()">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

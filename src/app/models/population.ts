@@ -1,8 +1,9 @@
 import {Model} from "./model";
 import {PopulationType} from "./population-type";
 import {LangueObtention} from "./langue-obtention";
-import {Certificat} from "./certificat";
 import {Postulation} from "./postulation";
+import {Certificat} from "./certificat";
+
 
 export class Population extends Model{
 

@@ -1,0 +1,112 @@
+<div class="container mt-4">
+  <div class="center_section">
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addGroupModal">Ajouter un Groupe</button>
+  </div>
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center text-primary px-3">Groupes Disponibles</h6>
+      <h1 class="mb-5" *ngIf="groupes?.length! > 0">Groupes valables</h1>
+      <h1 class="mb-5" *ngIf="groupes?.length == null || groupes?.length == 0">Aucun Groupe disponible</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let groupe of groupes">
+        <div class="card">
+          <div class="card-body">
+            <img class="img-fluid" src="assets/img/groupe.jpg" alt="">
+            <h5 class="card-title">{{ groupe.nom }}</h5>
+            <p class="card-text"><strong>ID:</strong> {{ groupe.groupeId }}</p>
+            <p class="card-text"><strong>Taille:</strong> {{ groupe.taille }}</p>
+            <p class="card-text"><strong>Département:</strong> {{ groupe.department }}</p>
+            <button class="btn btn-warning me-2" (click)="editGroupe(groupe)">Modifier</button>
+            <button class="btn btn-danger" (click)="deleteGroupe(groupe.groupeId)">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="addGroupModal" tabindex="-1" aria-labelledby="addGroupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addGroupModalLabel">Ajouter un Groupe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addGroupeForm" (ngSubmit)="addGroupe()">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input id="nom" formControlName="nom" class="form-control" placeholder="Nom du groupe" />
+              <div *ngIf="addGroupeForm.get('nom')?.invalid && addGroupeForm.get('nom')?.touched" class="text-danger">
+                Le nom est requis.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="taille">Taille</label>
+              <input type="number" id="taille" formControlName="taille" class="form-control" placeholder="Taille du groupe" />
+              <div *ngIf="addGroupeForm.get('taille')?.invalid && addGroupeForm.get('taille')?.touched" class="text-danger">
+                La taille est requise.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="department">Département</label>
+              <input id="department" formControlName="department" class="form-control" placeholder="Département" />
+              <div *ngIf="addGroupeForm.get('department')?.invalid && addGroupeForm.get('department')?.touched" class="text-danger">
+                Le département est requis.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="addGroupeForm.invalid">Ajouter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal pour éditer un groupe -->
+  <div class="modal fade" id="editGroupModal" tabindex="-1" aria-labelledby="editGroupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editGroupModalLabel">Modifier le Groupe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editGroupeForm" (ngSubmit)="updateGroupe()">
+            <div class="form-group">
+              <label for="editNom">Nom</label>
+              <input id="editNom" formControlName="nom" class="form-control" placeholder="Nom du groupe" />
+              <div *ngIf="editGroupeForm.get('nom')?.invalid && editGroupeForm.get('nom')?.touched" class="text-danger">
+                Le nom est requis.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="editTaille">Taille</label>
+              <input type="number" id="editTaille" formControlName="taille" class="form-control" placeholder="Taille du groupe" />
+              <div *ngIf="editGroupeForm.get('taille')?.invalid && editGroupeForm.get('taille')?.touched" class="text-danger">
+                La taille est requise.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="editDepartment">Département</label>
+              <input id="editDepartment" formControlName="department" class="form-control" placeholder="Département" />
+              <div *ngIf="editGroupeForm.get('department')?.invalid && editGroupeForm.get('department')?.touched" class="text-danger">
+                Le département est requis.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="editGroupeForm.invalid">Enregistrer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
