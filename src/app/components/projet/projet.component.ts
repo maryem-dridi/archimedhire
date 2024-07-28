@@ -101,7 +101,7 @@ export class ProjetComponent implements OnInit {
     if (this.projet_edit && this.validateProjet(this.projet_edit)) {
       // Calculer la durée avant la mise à jour
       this.projet_edit.duree = this.calculateDuree(this.projet_edit.dateDebut, this.projet_edit.dateFin);
-
+      console.log(this.projet_edit);
       this.projetService.updateProjet(this.projet_edit.projetId, this.projet_edit).subscribe(
         (response: any) => {
           this.toast.success({ detail: "Success", summary: 'Projet modifié avec succès', duration: 5000 });

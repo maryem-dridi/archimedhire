@@ -96,6 +96,7 @@ export class GroupeComponent implements OnInit {
         ...this.groupeToEdit,
         ...this.editGroupeForm.value
       };
+      console.log(updatedGroupe);
 
       this.groupeService.updateGroupe(updatedGroupe.groupeId, updatedGroupe).subscribe(
         (response) => {
