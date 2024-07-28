@@ -17,6 +17,7 @@ import { PopulationComponent } from './components/population/population.componen
 import { PopulationDetailComponent } from './components/population/population-detail/population-detail.component';
 import { ProjetComponent } from './components/projet/projet.component';
 import { GroupeComponent } from './components/groupe/groupe.component';
+import { SalarieComponent } from './components/salarie/salarie.component';
 //import { FormPostulationComponent } from './components/postulation/form-postulation/form-postulation.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { GroupeComponent } from './components/groupe/groupe.component';
     PopulationDetailComponent,
     ProjetComponent,
     GroupeComponent,
+    SalarieComponent,
     //FormPostulationComponent,
   ],
   imports: [

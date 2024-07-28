@@ -1,0 +1,64 @@
+<div class="container-xxl py-5">
+
+
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center text-primary px-3">Salaries Disponibles</h6>
+      <h1 class="mb-5" *ngIf="salaries?.length! > 0">Salaries valables</h1>
+      <h1 class="mb-5" *ngIf="salaries?.length == null || salaries?.length == 0">Aucun Salarie disponible</h1>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6 wow fadeInUp" *ngFor="let salarie of salaries; let i = index">
+        <div class="course-item bg-light">
+          <div class="position-relative overflow-hidden">
+            <img class="img-fluid" src="assets/img/salarie.jpeg" alt="">
+            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+            </div>
+          </div>
+          <div class="text-center p-4 pb-0">
+            <h5 class="mb-4">{{salarie.nom}} {{salarie.prenom}} - {{salarie.salaire}} €</h5>
+          </div>
+          <div class="d-flex border-top">
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-envelope text-primary me-2"></i>{{salarie.email}}</small>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-users text-primary me-2"></i>{{salarie.groupeFk}}</small>
+            <small class="flex-fill text-center py-2" *ngIf="salarie.adresse==''"><i class="fa fa-location-arrow text-primary me-2"></i>{{salarie.adresse}}</small>
+          </div>
+          <div class="d-flex border-top center_section">
+            <button class="btn btn-danger flex-fill" (click)="deleteSalarie(salarie.id)">Delete</button>
+            <button class="btn btn-primary flex-fill" (click)="openEditModal(salarie)" data-bs-toggle="modal" data-bs-target="#editSalarieModal">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Editing a Salarie -->
+<div class="modal fade" id="editSalarieModal" tabindex="-1" aria-labelledby="editSalarieModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editSalarieModalLabel">Modifier le Salarie</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedSalarie">
+        <form class="form">
+          <div class="input-container">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" [(ngModel)]="selectedSalarie.nom" [disabled]="true">
+          </div>
+          <div class="input-container">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" [(ngModel)]="selectedSalarie.prenom" [disabled]="true">
+          </div>
+          <div class="input-container">
+            <label for="salaire">Salaire</label>
+            <input type="number" class="form-control" id="salaire" name="salaire" [(ngModel)]="newSalary" placeholder="Salaire" [required]="true">
+          </div>
+
+          <button type="button" class="btn btn-primary" (click)="updateSalarie()" data-bs-dismiss="modal">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
