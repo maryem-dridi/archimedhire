@@ -7,7 +7,8 @@ export class User extends Model{
     this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-          this.adresse = adresse;
+        this.password = password;
+        this.adresse = adresse;
         this.pieceJointe = pieceJointe;
         this.score = score;
         this.numeroTelephone=numeroTelephone;
@@ -16,7 +17,8 @@ export class User extends Model{
   nom:string;
   prenom:string;
   email:string;
-  adresse:string|undefined;
+  password:string;
+  adresse:string;
   pieceJointe:File|null;
   score:number;
   numeroTelephone:number;

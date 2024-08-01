@@ -11,6 +11,9 @@ import {Population} from "./models/population";
 import {PopulationDetailComponent} from "./components/population/population-detail/population-detail.component";
 import {FormPostulationComponent} from "./components/postulation/form-postulation/form-postulation.component";
 import {PopulationAddComponent} from "./components/population/population-add/population-add.component";
+import {ProjetComponent} from "./components/projet/projet.component";
+import {GroupeComponent} from "./components/groupe/groupe.component";
+import {SalarieComponent} from "./components/salarie/salarie.component";
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -21,6 +24,11 @@ const routes: Routes = [
   { path: 'population/detail/:id', component: PopulationDetailComponent },
   { path: 'population/modifier/:id', component: PopulationAddComponent },
   { path: 'population/postuler/:id', component: FormPostulationComponent },
+  {path:'projet', component:ProjetComponent},
+  {path:'groupe', component:GroupeComponent},
+  {path:'postuler', component:PostulationComponent},
+  {path:'salarie', component:SalarieComponent},
+  { path: 'population/detail/:id', component: PopulationDetailComponent },
   {path:'about', component:AboutComponent, canActivate:[AuthGuard]},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'**', component:AboutComponent, canActivate:[AuthGuard]}
