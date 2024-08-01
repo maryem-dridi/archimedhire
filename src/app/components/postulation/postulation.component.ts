@@ -30,9 +30,8 @@ export class PostulationComponent implements OnInit {
       this.postulationService.postulerPieceJointe(formData)
         .subscribe(response => {
           this.toast.success({detail:"Success", summary:'Postulation Success', duration: 5000});
-          console.log(response);
         }, error => {
-          console.error('Postulation Error', error);
+          this.toast.error({detail:"Error", summary:error.error.message, duration: 5000});
         });
     } else {
       this.toast.error({detail:"ERROR", summary:'File is missing!', duration: 5000});

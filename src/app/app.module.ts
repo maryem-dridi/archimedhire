@@ -16,6 +16,8 @@ import { ResetComponent } from './components/reset/reset.component';
 import { PopulationComponent } from './components/population/population.component';
 import { PopulationDetailComponent } from './components/population/population-detail/population-detail.component';
 import { FormPostulationComponent } from './components/postulation/form-postulation/form-postulation.component';
+import {NgOptimizedImage} from "@angular/common";
+import { PopulationAddComponent } from './components/population/population-add/population-add.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +31,17 @@ import { FormPostulationComponent } from './components/postulation/form-postulat
     PopulationComponent,
     PopulationDetailComponent,
     FormPostulationComponent,
+    PopulationAddComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    NgToastModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        NgToastModule,
+        NgOptimizedImage
+    ],
   providers: [{
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptor,

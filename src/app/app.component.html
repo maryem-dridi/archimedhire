@@ -21,10 +21,23 @@
           <a href="404.html" class="dropdown-item">404 Page</a>
         </div>
       </div>
-      <a [class.active]="page==='postuler'" (click)="changePage('postuler')" href="/postuler" class="nav-item nav-link">Postuler</a>
+      <div class="dropdown-menu fade-down m-0">
+        <a href="/postulation" class="dropdown-item">Our Team</a>
+        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+        <a href="404.html" class="dropdown-item">404 Page</a>
+      </div>
+
+      <div class="nav-item dropdown">
+        <a [class.active]="page==='postuler'" (click)="changePage('postuler')" href="/postuler" class="nav-item nav-link">Postuler</a>
+        <div class="dropdown-menu fade-down m-0">
+          <a href="/population/add" class="dropdown-item">ajouter population</a>
+          <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+          <a href="404.html" class="dropdown-item">404 Page</a>
+        </div>
+      </div>
     </div>
-    <a *ngIf="this.auth.isLoggedIn()" (click)="signOut()" href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i class="fa fa-arrow-right ms-3 fadeOutRight"></i></a>
-    <a *ngIf="!this.auth.isLoggedIn()" routerLink="login" href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3 fadeInRightBig"></i></a>
+    <a *ngIf="this.auth.isLoggedIn()" (click)="signOut()" href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block carre">Logout<i class="fa fa-arrow-right ms-3 fadeOutRight"></i></a>
+    <a *ngIf="!this.auth.isLoggedIn()" routerLink="login" href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block carre">Login<i class="fa fa-arrow-right ms-3 fadeInRightBig"></i></a>
 
   </div>
 </nav>

@@ -18,6 +18,11 @@ export class PopulationService {
 
 
 
+  createData(object:Object): Observable<Population> {
+    const headers = this.as.getToken();
+    return this.http.post<Population>(`${this.baseUrl}`,Object)
+  }
+
   getData(id:number): Observable<Population> {
     //const headers = this.as.createAuthorization();
     return this.http.get<Population>(`${this.baseUrl}/${id}`,{/*headers*/})

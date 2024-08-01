@@ -3,6 +3,7 @@ import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
+import {Postulation} from "../models/postulation";
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,14 @@ export class PostulationService {
     return this.http.post(`${this.baseUrl}/postuler_piece_jointe`,info,{/*headers*/});
   }
 
+  postuler(postulation: Postulation) {
+    return this.http.post(`${this.baseUrl}/postuler`,postulation,{/*headers*/});
+
+  }
+
   getData(id:number): Observable<Object> {
     //const headers = this.as.createAuthorization();
     return this.http.get(`${this.baseUrl}/${id}`,{/*headers*/})
-  }
-
-  createData(info: Object): Observable<Object> {
-    //const headers = this.up.createAuthorization();
-    return this.http.post(`${this.baseUrl}`,info,{/*headers*/});
   }
 
   updateData(id:number, value:any): Observable<Object> {

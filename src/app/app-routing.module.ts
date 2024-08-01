@@ -9,13 +9,18 @@ import {ResetComponent} from "./components/reset/reset.component";
 import {PostulationComponent} from "./components/postulation/postulation.component";
 import {Population} from "./models/population";
 import {PopulationDetailComponent} from "./components/population/population-detail/population-detail.component";
+import {FormPostulationComponent} from "./components/postulation/form-postulation/form-postulation.component";
+import {PopulationAddComponent} from "./components/population/population-add/population-add.component";
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
   {path:'reset', component:ResetComponent},
   {path:'postuler', component:PostulationComponent},
+  { path: 'population/add', component: PopulationAddComponent },
   { path: 'population/detail/:id', component: PopulationDetailComponent },
+  { path: 'population/modifier/:id', component: PopulationAddComponent },
+  { path: 'population/postuler/:id', component: FormPostulationComponent },
   {path:'about', component:AboutComponent, canActivate:[AuthGuard]},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'**', component:AboutComponent, canActivate:[AuthGuard]}

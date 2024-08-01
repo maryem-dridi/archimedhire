@@ -22,16 +22,12 @@ export class PopulationDetailComponent  implements OnInit {
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(this.id)
     this.populationService.getData(this.id).subscribe(
       data=> {
         this.population=data
       },
     )
   }
-
-  postule = new Postulation("",new Date(),0,0,new User("", "","","","",null,0),null);
-
   public postuler(){
     /*if (this.postulation.pieceJointe) {
       const formData = new FormData();
@@ -53,11 +49,20 @@ export class PopulationDetailComponent  implements OnInit {
     console.log(this.postule)
   }
 
-  onFileSelected($event: Event) {
-    const input = $event.target as HTMLInputElement;
-    if (input.files) {
-      //this.postulation.pieceJointe = input.files[0];
-    }
-  }
+  postule = new Postulation("",new Date(),0,0,new User("", "","","","",null,0,0),null);
 
+  delete() {
+    this.populationService.deleteData(this.id).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
+      },
+      error: (err) => {
+        console.log(err)
+        this.toast.error({detail:err.statusText, summary:err.error.title, duration: 5000});
+        //this.toast.error({detail:err.statusText, summary:err.error.errors.message, duration: 5000});
+
+      },
+    });
+  }
 }

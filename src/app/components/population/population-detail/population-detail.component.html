@@ -13,7 +13,7 @@
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
         <h6 class="section-title bg-white text-start text-primary pe-3">Population detail</h6>
 
-        <h1 class="mb-4 custom-h1">{{ this.population.populationType }} for {{ this.population.experience }}</h1>
+        <h1 class="mb-4 archi-h1">{{ this.population.populationType }} for {{ this.population.experience }}</h1>
 
 
         <p class="mb-4">Soft Skills demandés : {{population.softskills}}</p>
@@ -32,8 +32,11 @@
             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>{{c.nom}} apartir {{c.organisme}} proche de {{c.dateObtention | date:'shortDate'}}</p>
           </div>
         </div>
-        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary py-3 px-5 mt-2" href="">Postuler</a>
-
+        <div style="display: flex;justify-content: space-between">
+          <a [routerLink]="['/population/postuler/', population.id]" class="btn btn-primary py-3 px-5 mt-2" href="">Postuler</a>
+          <a [routerLink]="['/population/modifier/', population.id]" class="btn btn-primary py-3 px-5 mt-2" href=""> Modifier</a>
+          <a class="btn btn-secondary py-3 px-5 mt-2" (click)="delete()"> <i class="fa fa-trash"></i> Delete </a>
+        </div>
       </div>
     </div>
   </div>
@@ -42,7 +45,7 @@
 
 
 <!-- Team Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" *ngIf="this.population.postulations?.length">
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
       <h6 class="section-title bg-white text-center text-primary px-3">Populations</h6>
@@ -56,9 +59,9 @@
           </div>
           <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
             <div class="bg-light d-flex justify-content-center pt-2 px-1">
-              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-linkedin"></i></a>
+              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-github"></i></a>
+              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-info-circle"></i></a>
             </div>
           </div>
           <div class="text-center p-4">
@@ -77,6 +80,7 @@
 </div>
 <!-- Team End -->
 
+<!-- postulation Start -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -91,13 +95,30 @@
       <div class="modal-body">
         <div class="form-group pt-3">
           <div class="form-floating">
-            <textarea [(ngModel)]="postule.motivationText"  class="form-control" id="subject" placeholder="Motivation Text"></textarea>
-            <label for="subject">Motivation Text</label>
+            <input [(ngModel)]="postule.motivationText"  class="form-control" id="motivationText" placeholder="Motivation Text">
+            <label for="motivationText">Motivation Text</label>
+          </div>
+
+          <div class="form-floating">
+            <input [(ngModel)]="postule.user.nom"  class="form-control" id="nom" placeholder="Motivation Text">
+            <label for="nom">Nom</label>
+          </div>
+
+          <div class="form-floating">
+            <input [(ngModel)]="postule.user.prenom"  class="form-control" id="prenom" placeholder="Motivation Text">
+            <label for="prenom">prenom</label>
+          </div>
+
+          <div class="form-floating">
+            <input [(ngModel)]="postule.user.adresse"  class="form-control" id="adresse" placeholder="Motivation Text">
+            <label for="adresse">adresse</label>
           </div>
           <div class="form-floating">
-            <input [(ngModel)]="postule.user.prenom" class="" id="prenom" placeholder="Motivation Text">
+            <input [(ngModel)]="postule.user.email"  class="form-control" id="email" placeholder="Motivation Text">
+            <label for="email">email</label>
           </div>
-<!--          <input type="file" [(ngModel)]="postulation.pieceJointe" (change)="onFileSelected($event)" class="form-control" id="pieceJointe"/>-->
+
+          <!--          <input type="file" [(ngModel)]="postulation.pieceJointe" (change)="onFileSelected($event)" class="form-control" id="pieceJointe"/>-->
 
         </div>
       </div>

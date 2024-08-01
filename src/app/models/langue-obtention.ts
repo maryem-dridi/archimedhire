@@ -1,22 +1,4 @@
-enum Niveau {
-  A1  ,
-  A2,
-  B1,
-  B2,
-  C1,
-  C2
-}
-
-class Langue {
-  public constructor(langueId: number, langage: string,niveau:Niveau) {
-    this.langueId = langueId;
-    this.langage = langage;
-    this.niveau = niveau;
-  }
-  langueId: number;
-  langage: string;
-  niveau:Niveau;
-}
+import {Langue} from "./langue";
 
 export class LangueObtention {
   public constructor(langueObtentionId: number, dateObtention:Date,langueFk:number,langue:Langue) {

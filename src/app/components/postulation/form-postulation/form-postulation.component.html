@@ -1,1 +1,112 @@
-<p>form-postulation works!</p>
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="row g-5">
+
+      <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+        <div class="position-relative h-100">
+          <img class="img-fluid position-absolute w-100 h-100 img" ngSrc="/assets/img/postulation.png" width="1200" height="1200" alt="" style="object-fit: cover;">
+        </div>
+      </div>
+
+      <div data-wow-delay="0.1s" class=" col-lg-6 fadeInUp">
+        <div *ngIf="indice==1" class="archi-card">
+          <p class="archi-h2">Formulaire de postulation</p>
+          <br/>
+          <div >
+            <p class="archi-label">Motivation text*</p>
+            <input type="text" [(ngModel)]="postulation.motivationText"  class="archi-put" id="prenom" placeholder="Motivation Text">
+          </div>
+          <br/>
+          <div style="display: flex; justify-content: space-between" >
+            <div style="width: 40%">
+              <p class="archi-label">Nom *</p>
+              <input [(ngModel)]="postulation.user.nom"  class="archi-put" placeholder="Nom">
+            </div>
+            <div style="width: 40%">
+              <p class="archi-label">Prenom *</p>
+              <input [(ngModel)]="postulation.user.prenom"  class="archi-put" placeholder="Prenom">
+            </div>
+          </div>
+          <br/>
+          <div>
+            <p class="archi-label">Institus *</p>
+            <input [(ngModel)]="postulation.user.university"  class="archi-put" placeholder="Institus">
+          </div>
+          <br/>
+          <div>
+            <p class="archi-label">Adresse *</p>
+            <input [(ngModel)]="postulation.user.adresse"  class="archi-put" placeholder="Motivation Text">
+          </div>
+          <br/>
+          <div>
+            <p class="archi-label">Email *</p>
+            <input [(ngModel)]="postulation.user.email"  class="archi-put" placeholder="Motivation Text">
+          </div>
+          <br/>
+          <div>
+            <p class="archi-label">Numero Telephone *</p>
+            <input [(ngModel)]="postulation.user.numeroTelephone"  class="archi-put" placeholder="Numero Telephone">
+          </div>
+          <br/>
+          <p>En soumettant ce formulaire, j'accepte que les données saisies dans ce formulaire soient utilisées pour recevoir des informations de la part d'Archimed, et utilisées dans les conditions décrites dans la Politique de confidentialité.</p>
+          <div style="display: flex;justify-content: space-between">
+            <button type="button" class="btn btn-primary" (click)="prev()">annuler</button>
+            <button type="button" class="btn btn-primary"  (click)="next()">suivant</button>
+          </div>
+
+
+        </div>
+        <div *ngIf="indice==2" class="archi-card">
+          <p class="archi-h2">Formulaire de postulation</p>
+
+          <div>
+            <div style="display: flex; justify-content: space-between" >
+            <p class="archi-label">Langues*</p>
+            <button (click)="addLanguage()" class="btn" style="border-radius: 20px;"><i class="fa fa-plus"></i></button>
+            </div>
+              <div *ngFor="let l of langues;index as i" style="display: flex; justify-content: space-between">
+              <select [(ngModel)]="langues[i].langage" class="archi-put" style="width: 40%" >
+                <option *ngFor="let lng of Langage|keyvalue" [value]="lng.key">{{lng.value}}</option>
+              </select>
+              <select [(ngModel)]="langues[i].niveau" class="archi-put" style="width: 40%">
+                <option *ngFor="let niv of Niveau|keyvalue" [value]="niv.key">{{niv.value}}</option>
+              </select>
+            </div>
+          </div>
+          <br/>
+
+          <div>
+            <p class="archi-label">Soft skills*</p>
+            <input [(ngModel)]="postulation.user.softskills"  class="archi-put" placeholder="softskills">
+
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between" >
+              <p class="archi-label">Certificats</p>
+              <button (click)="addCertificat()" class="btn" style="border-radius: 20px;"><i class="fa fa-plus"></i></button>
+            </div>
+            <div *ngFor="let c of certificats,let i= index" style="display: flex; justify-content: space-between">
+                <input>
+            </div>
+          </div>
+
+          <br/>
+          <div>
+            <p class="archi-label">Hard skills*</p>
+            <input [(ngModel)]="postulation.user.hardskills"  class="archi-put" placeholder="hardskills">
+
+          </div><br/>
+          <br/>
+          <p>En soumettant ce formulaire, j'accepte que les données saisies dans ce formulaire soient utilisées pour recevoir des informations de la part d'Archimed, et utilisées dans les conditions décrites dans la Politique de confidentialité.</p>
+          <div style="display: flex;justify-content: space-between">
+              <button type="button" class="btn btn-primary" (click)="prev()">annuler</button>
+              <button type="button" class="btn btn-primary" (click)="postuler()">postuler</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
