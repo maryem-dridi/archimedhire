@@ -25,9 +25,9 @@ export class PostulationService {
 
   }
 
-  getData(id:number): Observable<Object> {
+  getData(popId:number,userId:number): Observable<any> {
     //const headers = this.as.createAuthorization();
-    return this.http.get(`${this.baseUrl}/${id}`,{/*headers*/})
+    return this.http.get(`${this.baseUrl}/get?popId=${popId}&userId=${userId}`,{/*headers*/})
   }
 
   updateData(id:number, value:any): Observable<Object> {

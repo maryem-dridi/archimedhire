@@ -5,6 +5,10 @@ import {Postulation} from "../../models/postulation";
 import {PostulationPieceJointe} from "../../models/postulation-piece-jointe";
 import {NgToastService} from "ng-angular-popup";
 import {PostulationService} from "../../services/postulation.service";
+import {ActivatedRoute} from "@angular/router";
+import {User} from "../../models/user";
+import {Experience} from "../../models/Experience";
+import {Niveau} from "../../models/niveau";
 
 @Component({
   selector: 'app-postulation',
@@ -13,45 +17,22 @@ import {PostulationService} from "../../services/postulation.service";
 })
 export class PostulationComponent implements OnInit {
 
-  constructor(private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
-  populations:Population[] | undefined;
-  postulation = new PostulationPieceJointe("",new Date(),null,0,0);
+  constructor(private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService, private  route:ActivatedRoute) { }
+  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null,0,0),null);
+  popId:number=0;
+  postId:number=0;
   ngOnInit(): void {
-    this.populationService.getAll().subscribe(
-      data => this.populations=data
+    this.popId = Number(this.route.snapshot.paramMap.get('popId'));
+    this.postId = Number(this.route.snapshot.paramMap.get('postId'));
+    this.postulationService.getData(this.popId,this.postId).subscribe(
+      data => this.postulation=data
     )
   }
 
-  public postuler(){
-    if (this.postulation.pieceJointe) {
-      const formData = new FormData();
-      formData.append('pdfFile', this.postulation.pieceJointe);
-      formData.append('postulationObj', JSON.stringify(this.postulation));
-      this.postulationService.postulerPieceJointe(formData)
-        .subscribe(response => {
-          this.toast.success({detail:"Success", summary:'Postulation Success', duration: 5000});
-        }, error => {
-          this.toast.error({detail:"Error", summary:error.error.message, duration: 5000});
-        });
-    } else {
-      this.toast.error({detail:"ERROR", summary:'File is missing!', duration: 5000});
-    }
-    /*
-
-    return this.http.post(this.uploadUrl, formData);*/
-      console.log(this.postulation)
+  getProgressWidth(niveau: number): number {
+    const value = this.Niveau[niveau];
+    return typeof value === 'number' ? value * 20 : 0;
   }
 
-  onFileSelected($event: Event) {
-    const input = $event.target as HTMLInputElement;
-    if (input.files) {
-      this.postulation.pieceJointe = input.files[0];
-    }
-  }
-
-  onPopulationSelect(Id: number | undefined) {
-    console.log(Id)
-    this.postulation.populationFk=Id
-
-  }
+  protected readonly Niveau = Niveau;
 }

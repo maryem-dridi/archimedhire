@@ -34,8 +34,8 @@
         </div>
         <div style="display: flex;justify-content: space-between">
           <a [routerLink]="['/population/postuler/', population.id]" class="btn btn-primary py-3 px-5 mt-2" href="">Postuler</a>
-          <a [routerLink]="['/population/modifier/', population.id]" class="btn btn-primary py-3 px-5 mt-2" href=""> Modifier</a>
-          <a class="btn btn-secondary py-3 px-5 mt-2" (click)="delete()"> <i class="fa fa-trash"></i> Delete </a>
+          <a [routerLink]="['/population/modifier/', population.id]" class="btn btn-primary archi-warning py-3 px-5 mt-2" href=""> <i class="fa fa-edit"></i> Modifier</a>
+          <a class="btn btn-secondary archi-warning py-3 px-5 mt-2" (click)="delete()"> <i class="fa fa-trash"></i> Delete </a>
         </div>
       </div>
     </div>
@@ -61,14 +61,14 @@
             <div class="bg-light d-flex justify-content-center pt-2 px-1">
               <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-linkedin"></i></a>
               <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-github"></i></a>
-              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-info-circle"></i></a>
+              <a class="btn btn-sm-square btn-primary mx-1" [routerLink]="['postulation',postulation.user.id]"><i class="fa fa-info-circle"></i></a>
             </div>
           </div>
           <div class="text-center p-4">
-            <h5 class="mb-0">{{postulation.user?.nom}} {{postulation.user?.prenom}}</h5>
-            <p class="mb-0">{{postulation.user?.email}}</p>
-            <p class="mb-0">{{postulation.user?.adresse}} </p>
-            <p class="mb-0">{{postulation.user?.score}} </p>
+            <h5 class="mb-0">{{postulation.user.nom}} {{postulation.user.prenom}}</h5>
+            <p class="mb-0">{{postulation.user.email}}</p>
+            <p class="mb-0">{{postulation.user.adresse}} </p>
+            <p class="mb-0">{{postulation.user.score}} </p>
             <small>Postuler a {{postulation.postuledDate| date:'dd-MM-yyyy'}}</small>
 
 
@@ -79,53 +79,3 @@
   </div>
 </div>
 <!-- Team End -->
-
-<!-- postulation Start -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <p class="modal-title" id="exampleModalLabel"> <span style="font-size: 25px;font-weight:700">Postuler ici</span><br>
-          <small>Nous avons cordialement répondu à votre postulation la plus proche</small></p>
-
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-      </div>
-
-      <div class="modal-body">
-        <div class="form-group pt-3">
-          <div class="form-floating">
-            <input [(ngModel)]="postule.motivationText"  class="form-control" id="motivationText" placeholder="Motivation Text">
-            <label for="motivationText">Motivation Text</label>
-          </div>
-
-          <div class="form-floating">
-            <input [(ngModel)]="postule.user.nom"  class="form-control" id="nom" placeholder="Motivation Text">
-            <label for="nom">Nom</label>
-          </div>
-
-          <div class="form-floating">
-            <input [(ngModel)]="postule.user.prenom"  class="form-control" id="prenom" placeholder="Motivation Text">
-            <label for="prenom">prenom</label>
-          </div>
-
-          <div class="form-floating">
-            <input [(ngModel)]="postule.user.adresse"  class="form-control" id="adresse" placeholder="Motivation Text">
-            <label for="adresse">adresse</label>
-          </div>
-          <div class="form-floating">
-            <input [(ngModel)]="postule.user.email"  class="form-control" id="email" placeholder="Motivation Text">
-            <label for="email">email</label>
-          </div>
-
-          <!--          <input type="file" [(ngModel)]="postulation.pieceJointe" (change)="onFileSelected($event)" class="form-control" id="pieceJointe"/>-->
-
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="postuler()">Send</button>
-      </div>
-    </div>
-  </div>
-</div>

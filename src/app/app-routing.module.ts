@@ -14,21 +14,22 @@ import {PopulationAddComponent} from "./components/population/population-add/pop
 import {ProjetComponent} from "./components/projet/projet.component";
 import {GroupeComponent} from "./components/groupe/groupe.component";
 import {SalarieComponent} from "./components/salarie/salarie.component";
+import {PopulationComponent} from "./components/population/population.component";
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
   {path:'reset', component:ResetComponent},
-  {path:'postuler', component:PostulationComponent},
+  {path:'populations', component:PopulationComponent},
   { path: 'population/add', component: PopulationAddComponent },
-  { path: 'population/detail/:id', component: PopulationDetailComponent },
+  { path: 'populations/:id', component: PopulationDetailComponent },
+  { path: 'populations/:popId/postulation/:postId', component: PostulationComponent },
   { path: 'population/modifier/:id', component: PopulationAddComponent },
   { path: 'population/postuler/:id', component: FormPostulationComponent },
   {path:'projet', component:ProjetComponent},
   {path:'groupe', component:GroupeComponent},
   {path:'postuler', component:PostulationComponent},
   {path:'salarie', component:SalarieComponent},
-  { path: 'population/detail/:id', component: PopulationDetailComponent },
   {path:'about', component:AboutComponent, canActivate:[AuthGuard]},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'**', component:AboutComponent, canActivate:[AuthGuard]}

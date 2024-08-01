@@ -6,6 +6,17 @@
   border-radius: 0;
 }
 
+.archi-warning {
+  background-color: #FF4F14;
+  border-color: #FF4F14;
+}
+
+.archi-warning:hover {
+  background-color: #FFFFFF;
+  border-color: #FF4F14;
+  color: #FF4F14;
+}
+
 .archi-h1{
   font-family: "Bauhaus93", sans-serif;
 }

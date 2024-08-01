@@ -57,18 +57,18 @@
 
         </div>
         <div *ngIf="indice==2" class="archi-card">
-          <p class="archi-h2">Formulaire de postulation</p>
+          <p class="archi-h2">Formulaire d'ajout d'une population</p>
 
           <div>
             <div style="display: flex; justify-content: space-between" >
-            <p class="archi-label">Langues*</p>
-            <button (click)="addLanguage()" class="btn" style="border-radius: 20px;"><i class="fa fa-plus"></i></button>
+              <p class="archi-label">Langues*</p>
+              <button (click)="addLanguage()" class="btn" style="border-radius: 20px;"><i class="fa fa-plus"></i></button>
             </div>
-              <div *ngFor="let l of langues;index as i" style="display: flex; justify-content: space-between">
-              <select [(ngModel)]="langues[i].langage" class="archi-put" style="width: 40%" >
+            <div *ngFor="let l of this.postulation.user.langueObtentions;index as i" style="display: flex; justify-content: space-between; padding-bottom: 10px;padding-top: 10px">
+              <select [(ngModel)]="l.langue.langage" class="archi-put" style="width: 40%" >
                 <option *ngFor="let lng of Langage|keyvalue" [value]="lng.key">{{lng.value}}</option>
               </select>
-              <select [(ngModel)]="langues[i].niveau" class="archi-put" style="width: 40%">
+              <select [(ngModel)]="l.langue.niveau" class="archi-put" style="width: 40%">
                 <option *ngFor="let niv of Niveau|keyvalue" [value]="niv.key">{{niv.value}}</option>
               </select>
             </div>
@@ -77,31 +77,54 @@
 
           <div>
             <p class="archi-label">Soft skills*</p>
-            <input [(ngModel)]="postulation.user.softskills"  class="archi-put" placeholder="softskills">
-
+            <input [(ngModel)]="this.postulation.user.softskills"  class="archi-put" placeholder="softskills">
           </div>
+
+
+          <br/>
+          <br/>
+          <p>En soumettant ce formulaire, j'accepte que les données saisies dans ce formulaire soient utilisées pour recevoir des informations de la part d'Archimed, et utilisées dans les conditions décrites dans la Politique de confidentialité.</p>
+          <div style="display: flex;justify-content: space-between">
+            <button type="button" class="btn btn-primary" (click)="prev()">annuler</button>
+            <button type="button" class="btn btn-primary" (click)="next()">suivant</button>
+          </div>
+        </div>
+        <div *ngIf="indice==3" class="archi-card">
+          <p class="archi-h2">Formulaire d'ajout d'une population</p>
+
+
+
+          <div>
+            <p class="archi-label">Hard skills*</p>
+            <input [(ngModel)]="this.postulation.user.hardskills"  class="archi-put" placeholder="Hard skills">
+          </div>
+          <br/>
 
           <div>
             <div style="display: flex; justify-content: space-between" >
               <p class="archi-label">Certificats</p>
               <button (click)="addCertificat()" class="btn" style="border-radius: 20px;"><i class="fa fa-plus"></i></button>
             </div>
-            <div *ngFor="let c of certificats,let i= index" style="display: flex; justify-content: space-between">
-                <input>
+            <div *ngFor="let c of this.postulation.user.certificats,let i= index" style="display: flex; justify-content: space-between; padding-top: 10px; padding-bottom: 10px">
+              <input [(ngModel)]="c.nom"  class="archi-put" placeholder="nom">
+              <input [(ngModel)]="c.organisme"  class="archi-put" placeholder="organisme">
+              <input type="date" [(ngModel)]="c.dateObtention"  class="archi-put">
             </div>
           </div>
 
-          <br/>
-          <div>
-            <p class="archi-label">Hard skills*</p>
-            <input [(ngModel)]="postulation.user.hardskills"  class="archi-put" placeholder="hardskills">
+          <div style="display: flex; justify-content: space-between">
+            <p class="archi-label">Experience *</p>
 
-          </div><br/>
+            <select [(ngModel)]="this.postulation.user.experience" class="archi-put" style="width: 40%" >
+              <option *ngFor="let e of Experience|keyvalue" [value]="e.key">{{e.value}}</option>
+            </select>
+          </div>
+
           <br/>
           <p>En soumettant ce formulaire, j'accepte que les données saisies dans ce formulaire soient utilisées pour recevoir des informations de la part d'Archimed, et utilisées dans les conditions décrites dans la Politique de confidentialité.</p>
           <div style="display: flex;justify-content: space-between">
-              <button type="button" class="btn btn-primary" (click)="prev()">annuler</button>
-              <button type="button" class="btn btn-primary" (click)="postuler()">postuler</button>
+            <button type="button" class="btn btn-primary" (click)="prev()">annuler</button>
+            <button type="button" class="btn btn-primary" (click)="postuler()">postuler</button>
           </div>
         </div>
 

@@ -1,131 +1,84 @@
-<div *ngIf="populations!=null" class="container-xxl py-5">
+<section class="bg-light">
   <div class="container">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-      <h6 class="section-title bg-white text-center text-primary px-3">Postuler ici</h6>
-      <h1 class="mb-5" *ngIf="populations?.length!>0">Populations valables</h1>
-      <h1 class="mb-5" *ngIf="populations?.length==null || populations?.length==0">Aucune Populations valables</h1>
-
-    </div>
-    <div class="row g-4 justify-content-center">
-
-      <div class="col-lg-4 col-md-6 wow fadeInUp" *ngFor="let population of populations,let  i = index">
-        <div class="course-item bg-light">
-          <div class="position-relative overflow-hidden">
-            <img class="img-fluid" src="assets/img/course-1.jpg" alt="">
-            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-              <a id="forgot" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" (click)="onPopulationSelect(population.id)">Postuler en 2 minutes</a>
-              <a [routerLink]="['/population/detail', population.id]" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" >view details</a>
+    <div class="row">
+      <div class="col-lg-12 mb-4 mb-sm-5">
+        <div class="card card-style1 border-0">
+          <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+            <div class="row align-items-center">
+              <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+              </div>
+              <div class="col-lg-6 px-xl-10">
+                <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                  <h3 class="h2 text-white mb-0">{{postulation.user.nom}} {{postulation.user.prenom}}</h3>
+                  <span class="text-white">{{postulation.user.experience}}</span>
+                </div>
+                <ul class="list-unstyled mb-1-9">
+                  <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Position:</span> {{postulation.population?.populationType}}</li>
+                  <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Institus:</span> {{postulation.user.university}}</li>
+                  <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Experience:</span> {{postulation.user.experience}}</li>
+                  <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span> {{postulation.user.email}}</li>
+                  <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Adresse:</span> {{postulation.user.adresse}}</li>
+                  <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> {{postulation.user.numeroTelephone}}</li>
+                </ul>
+                <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
+                  <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
+                  <li><a href="#!"><i class="ti-facebook"></i></a></li>
+                  <li><a href="#!"><i class="ti-pinterest"></i></a></li>
+                  <li><a href="#!"><i class="ti-instagram"></i></a></li>
+                </ul>
+              </div>
             </div>
-
-          </div>
-          <div class="text-center p-4 pb-0">
-<!--            <h3 class="mb-0">$149.00</h3>-->
-<!--            <div class="mb-3">-->
-<!--              <small class="fa fa-star text-primary"></small>-->
-<!--              <small class="fa fa-star text-primary"></small>-->
-<!--              <small class="fa fa-star text-primary"></small>-->
-<!--              <small class="fa fa-star text-primary"></small>-->
-<!--              <small class="fa fa-star text-primary"></small>-->
-<!--              <small>(123)</small>-->
-<!--            </div>-->
-            <h5 class="mb-4">{{population.populationType}} pour {{population.experience}}</h5>
-          </div>
-          <div class="d-flex border-top">
-            <small class="flex-fill text-center border-end py-2" *ngIf="population.university!=null"><i class="fa fa-university text-primary me-2"></i>{{population.university}} Recommanded</small>
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-toolbox text-primary me-2"></i>{{population.hardskills}}</small>
-            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>{{ population.softskills }}</small>
-          </div>
-        </div>
-      </div><!--
-      <div class="col-lg-4 col-md-6 wow fadeInUp" *ngIf="i%3==1" data-wow-delay="0.3s">
-        <div class="course-item bg-light">
-          <div class="position-relative overflow-hidden">
-            <img class="img-fluid" src="assets/img/course-2.jpg" alt="">
-            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-              <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-              <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
-            </div>
-          </div>
-          <div class="text-center p-4 pb-0">
-&lt;!&ndash;            <h3 class="mb-0">$149.00</h3>&ndash;&gt;
-            <div class="mb-3">
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small>(123)</small>
-            </div>
-            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
-          </div>
-          <div class="d-flex border-top">
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 wow fadeInUp" *ngIf="i%3==2" data-wow-delay="0.5s">
-        <div class="course-item bg-light">
-          <div class="position-relative overflow-hidden">
-            <img class="img-fluid" src="assets/img/course-3.jpg" alt="">
-            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-              <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-              <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
-            </div>
-          </div>
-          <div class="text-center p-4 pb-0">
-            <h3 class="mb-0">$149.00</h3>
-            <div class="mb-3">
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small class="fa fa-star text-primary"></small>
-              <small>(123)</small>
-            </div>
-            <h5 class="mb-4">Web Designer for Expert</h5>
-          </div>
-          <div class="d-flex border-top">
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>Esprit Recomanded</small>
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
-          </div>
-        </div>
-      </div>-->
-
-    </div>
-
-
-</div>
-</div>
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <p class="modal-title" id="exampleModalLabel"> <span style="font-size: 25px;font-weight:700">Postuler ici</span><br>
-          <small>Nous avons cordialement répondu à votre postulation la plus proche</small></p>
-
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-      </div>
-
-      <div class="modal-body">
-        <div class="form-group pt-3">
-          <div class="form-floating">
-            <textarea [(ngModel)]="postulation.motivationText"  class="form-control" id="subject" placeholder="Motivation Text"></textarea>
-            <label for="subject">Motivation Text</label>
-          </div>
-            <input type="file" [(ngModel)]="postulation.pieceJointe" (change)="onFileSelected($event)" class="form-control" id="pieceJointe"/>
-
+      <div class="col-lg-12 mb-4 mb-sm-5">
+        <div>
+          <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
+          <p>{{postulation.motivationText}}</p>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="postuler()">Send</button>
+      <div class="col-lg-6 mb-4 mb-sm-5">
+        <div>
+          <span class="section-title text-primary mb-3 mb-sm-4">Soft skills</span>
+          <p>{{postulation.user.softskills}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4 mb-sm-5">
+        <div>
+          <span class="section-title text-primary mb-3 mb-sm-4">Hard skills</span>
+          <p>{{postulation.user.hardskills}}</p>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 mb-4 mb-sm-5">
+            <div class="mb-4 mb-sm-5">
+              <span class="section-title text-primary mb-3 mb-sm-4">Languages</span>
+              <div *ngFor="let l of postulation.user.langueObtentions">
+                <div class="progress-text">
+                  <div class="row">
+                    <div class="col-6">{{l.langue.langage}}</div>
+                    <div class="col-6 text-end">{{l.langue.niveau}}</div>
+                  </div>
+                </div>
+                <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
+                  <div class="animated custom-bar progress-bar slideInLeft bg-secondary" [ngStyle]="{'width': getProgressWidth(l.langue.niveau) + '%'}" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="section-title text-primary mb-3 mb-sm-4">Certifcats</span>
+              <div class="progress-text" *ngFor="let c of postulation.user.certificats">
+                <div class="row">
+                  <div class="col-6">{{ c.nom }}</div>
+                  <div class="col-6 text-end">from {{c.organisme}} at {{c.dateObtention|date}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

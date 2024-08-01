@@ -15,10 +15,11 @@ import { AboutComponent } from './components/about/about.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { PopulationComponent } from './components/population/population.component';
 import { PopulationDetailComponent } from './components/population/population-detail/population-detail.component';
+import { PopulationAddComponent } from './components/population/population-add/population-add.component';
 import { ProjetComponent } from './components/projet/projet.component';
 import { GroupeComponent } from './components/groupe/groupe.component';
 import { SalarieComponent } from './components/salarie/salarie.component';
-//import { FormPostulationComponent } from './components/postulation/form-postulation/form-postulation.component';
+import { FormPostulationComponent } from './components/postulation/form-postulation/form-postulation.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SalarieComponent } from './components/salarie/salarie.component';
     ProjetComponent,
     GroupeComponent,
     SalarieComponent,
-    //FormPostulationComponent,
+    FormPostulationComponent,
+    PopulationAddComponent,
   ],
   imports: [
     BrowserModule,
