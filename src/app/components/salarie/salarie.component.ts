@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Salarie} from "../../models/salarie";
 import {SalarieService} from "../../services/salarie.service";
+import {Groupe} from "../../models/groupe";
+import {GroupeService} from "../../services/groupe.service";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-salarie',
@@ -9,15 +12,21 @@ import {SalarieService} from "../../services/salarie.service";
 })
 export class SalarieComponent implements OnInit {
 
+  groupes: Groupe[] | undefined;
   salaries: Salarie[] = [];
   errorMessage: string = '';
   selectedSalarie: Salarie | null = null;
   newSalary: number = 0;
 
-  constructor(private salarieService: SalarieService) {}
+  constructor(private salarieService: SalarieService,private groupeService:GroupeService, private toast: NgToastService) {}
 
   ngOnInit(): void {
     this.loadSalaries();
+    this.groupeService.getAllGroupes().subscribe(
+      (data) => {
+        this.groupes = data;
+      }
+    );
   }
 
   loadSalaries(): void {
@@ -52,6 +61,17 @@ export class SalarieComponent implements OnInit {
         error: (err: any) => this.errorMessage = err.message || 'Error updating salarie.'
       });
     }
+  }
+
+  affecterSalarieAuGroupe(salarieId:  number|undefined, groupeId: number|undefined){
+    this.salarieService.affecterSalarieAuGroupe(salarieId,groupeId).subscribe(
+      (data)=>{
+        this.loadSalaries();
+        this.toast.success({ detail: "Success", summary: 'Salarie affecté avec succès', duration: 5000 });
+      }
+
+    )
+
   }
 
 }

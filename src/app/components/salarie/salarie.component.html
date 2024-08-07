@@ -21,11 +21,20 @@
           <div class="d-flex border-top">
             <small class="flex-fill text-center border-end py-2"><i class="fa fa-envelope text-primary me-2"></i>{{salarie.email}}</small>
             <small class="flex-fill text-center border-end py-2"><i class="fa fa-users text-primary me-2"></i>{{salarie.groupeFk}}</small>
+
             <small class="flex-fill text-center py-2" *ngIf="salarie.adresse==''"><i class="fa fa-location-arrow text-primary me-2"></i>{{salarie.adresse}}</small>
+          </div>
+          <div class="d-flex border-top">
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-users text-primary me-2"></i></small>
+            <select id="groupeFk2" class="form-control" [(ngModel)]="salarie.groupeFk" name="groupeFk" required (change)="affecterSalarieAuGroupe(salarie.id,salarie.groupeFk)">
+              <option *ngFor="let groupe of groupes" [value]="groupe.groupeId">{{ groupe.nom }}</option>
+            </select>
+
           </div>
           <div class="d-flex border-top center_section">
             <button class="btn btn-danger flex-fill" (click)="deleteSalarie(salarie.id)">Delete</button>
             <button class="btn btn-primary flex-fill" (click)="openEditModal(salarie)" data-bs-toggle="modal" data-bs-target="#editSalarieModal">Edit</button>
+
           </div>
         </div>
       </div>
