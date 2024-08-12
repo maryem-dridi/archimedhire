@@ -4,11 +4,13 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Population} from "../models/population";
+import {PopulationType} from "../models/population-type";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PopulationService {
+  populations: Population[]=[];
   private baseUrl = "http://localhost:5248/api/Population"
   choixmenu : string = 'A';
   public dataForm!: FormGroup ;
@@ -24,6 +26,10 @@ export class PopulationService {
 
   getData(id:number): Observable<Population> {
     return this.http.get<Population>(`${this.baseUrl}/${id}`,{/*headers*/})
+  }
+
+  search(searchText:string,populationType:PopulationType): Observable<any> {
+    return this.http.get<Population>(`${this.baseUrl}/search?searchText=${searchText}`,{/*headers*/})
   }
 
 

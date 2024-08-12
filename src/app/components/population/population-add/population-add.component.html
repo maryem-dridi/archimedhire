@@ -20,9 +20,8 @@
 
           <div style="display: flex; justify-content: space-between">
             <p class="archi-label">Population Type *</p>
-
             <select [(ngModel)]="population.populationType" class="archi-put" style="width: 40%" >
-              <option *ngFor="let e of PopulationType|keyvalue" [value]="e.key">{{e.value}}</option>
+              <option *ngFor="let pt of PopulationType|enumKeyValue" [value]="pt.value">{{pt.key}}</option>
             </select>
           </div>
           <br/>
@@ -31,14 +30,14 @@
             <p class="archi-label">Experience *</p>
 
             <select [(ngModel)]="population.experience" class="archi-put" style="width: 40%" >
-              <option *ngFor="let e of Experience|keyvalue" [value]="e.key">{{e.value}}</option>
+              <option *ngFor="let e of Experience|enumKeyValue " [value]='e.value'>{{e.key}}</option>
             </select>
           </div>
           <br/>
           <br/>
           <p>En soumettant ce formulaire, j'accepte que les données saisies dans ce formulaire soient utilisées pour recevoir des informations de la part d'Archimed, et utilisées dans les conditions décrites dans la Politique de confidentialité.</p>
           <div style="display: flex;justify-content: space-between">
-            <button type="button" class="btn btn-primary" (click)="prev()">annuler</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/populations',this.id]">annuler</button>
             <button type="button" class="btn btn-primary"  (click)="next()">suivant</button>
           </div>
 
@@ -54,10 +53,10 @@
             </div>
             <div *ngFor="let l of this.population.langueObtentions;index as i" style="display: flex; justify-content: space-between; padding-bottom: 10px;padding-top: 10px">
               <select [(ngModel)]="l.langue.langage" class="archi-put" style="width: 40%" >
-                <option *ngFor="let lng of Langage|keyvalue" [value]="lng.key">{{lng.value}}</option>
+                <option *ngFor="let l of Langage|enumKeyValue " [value]='l.value'>{{l.key}}</option>
               </select>
               <select [(ngModel)]="l.langue.niveau" class="archi-put" style="width: 40%">
-                <option *ngFor="let niv of Niveau|keyvalue" [value]="niv.key">{{niv.value}}</option>
+                <option *ngFor="let niv of Niveau|enumKeyValue" [value]="niv.value">{{niv.key}}</option>
               </select>
             </div>
           </div>

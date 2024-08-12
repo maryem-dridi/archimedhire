@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PopulationService} from "../../../services/population.service";
 import {PostulationService} from "../../../services/postulation.service";
 import {NgToastService} from "ng-angular-popup";
@@ -11,6 +11,8 @@ import {Niveau} from "../../../models/niveau";
 import {Certificat} from "../../../models/certificat";
 import {Experience} from "../../../models/Experience";
 import {LangueObtention} from "../../../models/langue-obtention";
+import {SalarieService} from "../../../services/salarie.service";
+import {UserStoreService} from "../../../services/user-store.service";
 
 @Component({
   selector: 'app-form-postulation',
@@ -18,7 +20,7 @@ import {LangueObtention} from "../../../models/langue-obtention";
   styleUrls: ['./form-postulation.component.scss']
 })
 export class FormPostulationComponent implements OnInit {
-  constructor(private route: ActivatedRoute,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
+  constructor(private us:UserStoreService,private router:Router,private route: ActivatedRoute,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
 
   id:number = 0;
   postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null,0,0),null);
@@ -28,10 +30,12 @@ export class FormPostulationComponent implements OnInit {
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.postulation.populationFk=this.id
+    this.us.getFullNameFromStore()
     this.populationService.getData(this.id).subscribe(
       data=> {
         this.postulation.population = data;
       });
+    this.us.getEmailFromStore().subscribe(value => this.postulation.user.email = value)
   }
 
   langues:Langue[]=[new Langue(Langage.Français,Niveau.B2)];
@@ -39,7 +43,7 @@ export class FormPostulationComponent implements OnInit {
 
   //a chaque fois il clique sur l'ajoute de langue on ajoute la valeur par défaut pour étre affiché sur l'ui
   public addLanguage(){
-    this.postulation.user.langueObtentions?.push(new LangueObtention(0,new Date(),0,new Langue(Langage.Français,Niveau.B2)))
+    this.postulation.user.langueObtentions?.push(new LangueObtention(new Date(),0,new Langue(Langage.Français,Niveau.B2)))
   }
   //a chaque fois il clique sur l'ajoute de certificat on ajoute la valeur par défaut pour étre affiché sur l'ui afin d'étre modifié
   public addCertificat() {
@@ -52,11 +56,12 @@ export class FormPostulationComponent implements OnInit {
 
     this.postulationService.postuler(this.postulation).subscribe({
       next: (res) => {
-        console.log(this.postulation)
-        console.log(res)
+
         this.toast.success({detail:"SUCCESS", summary:res.toString(), duration: 5000});
+        this.router.navigate(['/populations',this.id]);
       },
       error: (err) => {
+        console.log(err)
         this.toast.error({detail:err.statusText, summary:err.error.title, duration: 5000});
         //this.toast.error({detail:err.statusText, summary:err.error.errors.message, duration: 5000});
 

@@ -112,11 +112,13 @@
             </div>
           </div>
 
+
+
           <div style="display: flex; justify-content: space-between">
             <p class="archi-label">Experience *</p>
 
             <select [(ngModel)]="this.postulation.user.experience" class="archi-put" style="width: 40%" >
-              <option *ngFor="let e of Experience|keyvalue" [value]="e.key">{{e.value}}</option>
+              <option *ngFor="let e of Experience|enumKeyValue" [value]="e.value">{{e.key}}</option>
             </select>
           </div>
 

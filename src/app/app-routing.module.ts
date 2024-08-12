@@ -15,8 +15,10 @@ import {ProjetComponent} from "./components/projet/projet.component";
 import {GroupeComponent} from "./components/groupe/groupe.component";
 import {SalarieComponent} from "./components/salarie/salarie.component";
 import {PopulationComponent} from "./components/population/population.component";
+import {HomeComponent} from "./components/home/home.component";
 
 const routes: Routes = [
+  {path:'', component:HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
   {path:'reset', component:ResetComponent},
@@ -26,11 +28,11 @@ const routes: Routes = [
   { path: 'populations/:popId/postulation/:postId', component: PostulationComponent },
   { path: 'population/modifier/:id', component: PopulationAddComponent },
   { path: 'population/postuler/:id', component: FormPostulationComponent },
-  {path:'projet', component:ProjetComponent},
-  {path:'groupe', component:GroupeComponent},
+  {path:'projet', component:ProjetComponent, canActivate:[AuthGuard]},
+  {path:'groupe', component:GroupeComponent, canActivate:[AuthGuard]},
   {path:'postuler', component:PostulationComponent},
-  {path:'salarie', component:SalarieComponent},
-  {path:'about', component:AboutComponent, canActivate:[AuthGuard]},
+  {path:'salarie', component:SalarieComponent, canActivate:[AuthGuard]},
+  {path:'about', component:AboutComponent},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'**', component:AboutComponent, canActivate:[AuthGuard]}
 ];

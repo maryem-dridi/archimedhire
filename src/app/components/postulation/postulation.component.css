@@ -35,7 +35,7 @@ section {
   display: inline-block;
 }
 .text-primary {
-  color: #01B59B !important;
+  color: #4747F0 !important;
   font-family: "Bauhaus93", sans-serif;
   font-size: 20px;
 
@@ -70,7 +70,7 @@ section {
 }
 
 .bg-secondary {
-  background: #FF4F14 !important;
+  background: #4747F0 !important;
 }
 @media screen and (min-width: 576px){
   .pe-sm-6, .px-sm-6 {

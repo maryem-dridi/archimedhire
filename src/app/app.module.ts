@@ -20,6 +20,11 @@ import { ProjetComponent } from './components/projet/projet.component';
 import { GroupeComponent } from './components/groupe/groupe.component';
 import { SalarieComponent } from './components/salarie/salarie.component';
 import { FormPostulationComponent } from './components/postulation/form-postulation/form-postulation.component';
+import {EnumKeyValue} from "./pipes/Enum-key-value";
+import {CommonModule} from "@angular/common";
+import {FormattedDate} from "./pipes/formatted-date";
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,10 @@ import { FormPostulationComponent } from './components/postulation/form-postulat
     SalarieComponent,
     FormPostulationComponent,
     PopulationAddComponent,
+    EnumKeyValue,
+    FormattedDate,
+    SearchbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,12 @@ import { FormPostulationComponent } from './components/postulation/form-postulat
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    CommonModule
+  ],
+  exports: [
+    EnumKeyValue,
+    FormattedDate
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

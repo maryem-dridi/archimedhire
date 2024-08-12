@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
           this.auth.storeToken(res.token);
           //this.auth.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.auth.decodedToken();
+          this.userStore.setEmailForStore(tokenPayload.email);
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
           this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PopulationService} from "../../services/population.service";
 import {PostulationService} from "../../services/postulation.service";
 import {NgToastService} from "ng-angular-popup";
 import {Population} from "../../models/population";
 import {PostulationPieceJointe} from "../../models/postulation-piece-jointe";
+import {PopulationType} from "../../models/population-type";
 
 @Component({
   selector: 'app-population',
@@ -13,12 +14,13 @@ import {PostulationPieceJointe} from "../../models/postulation-piece-jointe";
 })
 export class PopulationComponent implements OnInit {
 
-  constructor(private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
-  populations:Population[] | undefined;
+  constructor(protected populationService:PopulationService, private  postulationService:PostulationService, private toast:NgToastService) { }
+  //populations:Population[] | undefined;
   postulation = new PostulationPieceJointe("",new Date(),null,0,0);
   ngOnInit(): void {
+    //if(this.populations==null)
     this.populationService.getAll().subscribe(
-      data => this.populations=data
+      data => this.populationService.populations=data
     )
   }
 
@@ -54,4 +56,6 @@ export class PopulationComponent implements OnInit {
     this.postulation.populationFk=Id
 
   }
+
+  protected readonly PopulationType = PopulationType;
 }
