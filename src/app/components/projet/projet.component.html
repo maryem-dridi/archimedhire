@@ -69,8 +69,10 @@
             <input type="text" id="strategieAdopte" class="form-control" placeholder="Stratégie Adoptée" name="strategieAdopte" [(ngModel)]="projet_add.strategieAdopte" required>
           </div>
           <div class="input-container">
-            <label for="groupeFk" class="form-label">ID Groupe</label>
-            <input type="number" id="groupeFk" class="form-control" placeholder="ID du Groupe" name="groupeFk" [(ngModel)]="projet_add.groupeFk" required>
+            <label for="groupeFk" class="form-label">Groupe</label>
+            <select id="groupeFk" class="form-control" [(ngModel)]="projet_add.groupeFk" name="groupeFk" required>
+              <option *ngFor="let groupe of groupes" [value]="groupe.groupeId">{{ groupe.nom }}</option>
+            </select>
           </div>
           <button type="button" class="btn btn-primary" (click)="ajouterProjet()">Ajouter</button>
           <button type="button" class="btn btn-secondary" (click)="viderChamps()">Annuler</button>
@@ -111,9 +113,10 @@
             <input type="text" id="strategieAdopte2" class="form-control" placeholder="Stratégie Adoptée" name="strategieAdopte" [(ngModel)]="projet_edit.strategieAdopte" required>
           </div>
           <div class="input-container">
-            <label for="groupeFk" class="form-label">ID Groupe</label>
-            <input type="number" class="form-control" placeholder="ID du Groupe" name="groupeFk" [(ngModel)]="projet_edit.groupeFk" required>
-          </div>
+            <label for="groupeFk2" class="form-label">Groupe</label>
+            <select id="groupeFk2" class="form-control" [(ngModel)]="projet_add.groupeFk" name="groupeFk" required>
+              <option *ngFor="let groupe of groupes" [value]="groupe.groupeId">{{ groupe.nom }}</option>
+            </select>          </div>
           <button type="button" class="btn btn-primary" (click)="updateProjet()">Enregistrer</button>
         </form>
       </div>

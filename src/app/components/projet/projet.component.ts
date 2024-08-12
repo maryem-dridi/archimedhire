@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { Projet } from 'src/app/models/projet';
 import { ProjetService } from 'src/app/services/projet.service';
+import {GroupeService} from "../../services/groupe.service";
+import {Groupe} from "../../models/groupe";
 declare var bootstrap : any;
 @Component({
   selector: 'app-projet',
@@ -13,6 +15,7 @@ export class ProjetComponent implements OnInit {
 
 
   projets: Projet[] | undefined;
+  groupes: Groupe[] | undefined;
   projet_add: Projet = {
     projetId: 0,
     nom: '',
@@ -35,13 +38,18 @@ export class ProjetComponent implements OnInit {
     groupeFk: 0
   };
 
-  constructor(private projetService: ProjetService, private toast: NgToastService) { }
+  constructor(private projetService: ProjetService, private toast: NgToastService,private groupeService:GroupeService) { }
 
   ngOnInit(): void {
     this.projetService.getAllProjets().subscribe(
       (data) => {
         this.projets = data;
         console.log(this.projets);
+      }
+    );
+    this.groupeService.getAllGroupes().subscribe(
+      (data) => {
+        this.groupes = data;
       }
     );
   }
