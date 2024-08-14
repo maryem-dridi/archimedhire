@@ -11,28 +11,27 @@ export class SalarieService {
 
   constructor(private http: HttpClient) {}
 
-
   recruitSalarie(id: number, salaire: number,groupeFk: number): Observable<Object> {
     return this.http.post(`${this.baseUrl}/recruter/${id}/${salaire}/${groupeFk}`, null);
   }
-
 
   getAllSalaries(): Observable<Salarie[]> {
     return this.http.get<Salarie[]>(`${this.baseUrl}/getAll`);
   }
 
-
   getSalarieById(id: number | undefined): Observable<Salarie> {
     return this.http.get<Salarie>(`${this.baseUrl}/get/${id}`);
   }
-
 
   updateSalarie(id: number | undefined, salaire: number): Observable<Object> {
     return this.http.put(`${this.baseUrl}/update/${id}/${salaire}`, null);
   }
 
-
   deleteSalarie(id: number | undefined): Observable<any> {
     return this.http.delete(`${this.baseUrl}/delete/${id}`, { responseType: 'text' });
+  }
+
+  affecterSalarieAuGroupe(salarieId:  number|undefined, groupeId:  number|undefined): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/affecter/${salarieId}/${groupeId}`, null);
   }
 }

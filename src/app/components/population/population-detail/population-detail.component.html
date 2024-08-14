@@ -16,18 +16,18 @@
         <h1 class="mb-4 archi-h1">{{ this.population.populationType }} for {{ this.population.experience }}</h1>
 
 
-        <p class="mb-4">Soft Skills demandés : {{population.softskills}}</p>
+        <p class="mb-4" *ngIf="this.population.softskills!=''">Soft Skills demandés : {{population.softskills}}</p>
         <p class="mb-4">Hard Skills demandés : {{population.hardskills}}</p>
 
-        <div class="row gy-2 gx-4 mb-4">
-          <p class="mb-4" *ngIf="this.population.langueObtentions?.length!=0">Langues demandées:</p>
+        <div class="row gy-2 gx-4 mb-4" *ngIf="this.population.langueObtentions?.length!=0">
+          <p class="mb-2" >Langues demandées:</p>
           <div class="col-sm-12" *ngFor="let l of this.population.langueObtentions">
             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>{{l.langue.langage}} pour le niveau {{l.langue.niveau}}</p>
           </div>
         </div>
 
-        <div>
-          <p class="mb-4" *ngIf="this.population.certificats?.length!=0">Certificats demandées:</p>
+        <div *ngIf="this.population.certificats[0]?.nom!=''">
+          <p class="mb-2" >Certificats demandées:</p>
           <div class="row gy-2 gx-4 mb-2">
             <div class="col-sm-12" *ngFor="let c of this.population.certificats">
               <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>{{c.nom}} apartir {{c.organisme}} proche de {{c.dateObtention | date:'shortDate'}}</p>
