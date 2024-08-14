@@ -67,10 +67,10 @@
             </div>
           </div>
           <div class="text-center p-4">
-            <h5 class="mb-0">{{postulation.user.nom}} {{postulation.user.prenom}}</h5>
+            <h5 class="mb-0">{{postulation.user.nom|titlecase}} {{postulation.user.prenom|titlecase}}</h5>
             <p class="mb-0">{{postulation.user.email}}</p>
             <p class="mb-0">{{postulation.user.adresse}} </p>
-            <p class="mb-0">{{postulation.user.score}} </p>
+            <p class="mb-0">{{postulation.user.score*10|percent}} </p>
             <small>Postuler a {{postulation.postuledDate| date:'dd-MM-yyyy'}}</small>
 
 

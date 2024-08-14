@@ -43,7 +43,9 @@
               <div class="form-floating">
                 <input type="text" formControlName="Password" class="form-control" id="subject" placeholder="Subject">
                 <label for="subject">Mot de passe</label>
-                <small *ngIf="signUpForm.controls['Password'].dirty && signUpForm.hasError('pattern','Password')" class="text-danger">*Password est valid*</small>
+
+                <small *ngIf="signUpForm.controls['Password'].dirty && signUpForm.hasError('required','Password')" class="text-danger">*Password is required*</small>
+                <small *ngIf="signUpForm.controls['Password'].dirty && signUpForm.hasError('pattern','Password')" class="text-danger">*Le format est incorrect*</small>
 
               </div>
             </div>

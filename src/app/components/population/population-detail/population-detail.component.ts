@@ -44,4 +44,5 @@ export class PopulationDetailComponent  implements OnInit {
   }
 
     protected readonly PopulationType = PopulationType;
+    protected readonly String = String;
 }

@@ -12,9 +12,10 @@
         <div *ngIf="indice==1" class="archi-card">
           <p class="archi-h2">Formulaire de postulation</p>
           <br/>
+
           <div >
             <p class="archi-label">Motivation text*</p>
-            <input type="text" [(ngModel)]="postulation.motivationText"  class="archi-put" id="prenom" placeholder="Motivation Text">
+            <textarea  type="text" [(ngModel)]="postulation.motivationText"  class="archi-put" id="prenom" placeholder="Motivation Text"></textarea>
           </div>
           <br/>
           <div style="display: flex; justify-content: space-between" >

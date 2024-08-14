@@ -11,7 +11,7 @@
               <div class="col-lg-6 px-xl-10">
                 <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                   <div class="flex-row d-lg-flex  justify-content-between">
-                    <h3 class="h2 text-white mb-0">{{postulation.user.nom}} {{postulation.user.prenom}}</h3>
+                    <h3 class="h2 text-white mb-0">{{postulation.user.nom|titlecase}} {{postulation.user.prenom|titlecase}}</h3>
                     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#recruter">recruter <i class="fa fa fa-hand-pointer"> </i> </button>
                   </div>
                   <span class="text-white">{{postulation.user.experience}}</span>
@@ -74,7 +74,7 @@
               <span class="section-title text-primary mb-3 mb-sm-4">Certifcats</span>
               <div class="progress-text" *ngFor="let c of postulation.user.certificats">
                 <div class="row">
-                  <div class="col-6">{{ c.nom }}</div>
+                  <div class="col-6">{{ c.nom|titlecase }}</div>
                   <div class="col-6 text-end">from {{c.organisme}} at {{c.dateObtention|date}}</div>
                 </div>
               </div>
