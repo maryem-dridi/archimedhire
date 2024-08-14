@@ -38,9 +38,8 @@ export class PopulationComponent implements OnInit {
     } else {
       this.toast.error({detail:"ERROR", summary:'File is missing!', duration: 5000});
     }
-    /*
+    /*return this.http.post(this.uploadUrl, formData);*/
 
-    return this.http.post(this.uploadUrl, formData);*/
     console.log(this.postulation)
   }
 
@@ -52,7 +51,6 @@ export class PopulationComponent implements OnInit {
   }
 
   onPopulationSelect(Id: number | undefined) {
-    console.log(Id)
     this.postulation.populationFk=Id
 
   }

@@ -12,7 +12,6 @@
         <div *ngIf="indice==1" class="archi-card">
           <p class="archi-h2">Formulaire de postulation</p>
           <br/>
-
           <div >
             <p class="archi-label">Motivation text*</p>
             <textarea  type="text" [(ngModel)]="postulation.motivationText"  class="archi-put" id="prenom" placeholder="Motivation Text"></textarea>
@@ -48,6 +47,9 @@
             <p class="archi-label">Numero Telephone *</p>
             <input [(ngModel)]="postulation.user.numeroTelephone"  class="archi-put" placeholder="Numero Telephone">
           </div>
+          <br/>
+          <p class="archi-label">Image *</p>
+          <input type="file" [(ngModel)]="postulation.user.image" (change)="onFileSelected($event)" class="form-control" id="pieceJointe"/>
           <br/>
           <p>En soumettant ce formulaire, j'accepte que les données saisies dans ce formulaire soient utilisées pour recevoir des informations de la part d'Archimed, et utilisées dans les conditions décrites dans la Politique de confidentialité.</p>
           <div style="display: flex;justify-content: space-between">

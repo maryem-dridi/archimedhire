@@ -23,11 +23,11 @@ export class PostulationComponent implements OnInit {
 
   constructor(private router:Router,private groupeService:GroupeService,private salarieService:SalarieService,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService, private  route:ActivatedRoute) {
   }
-  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null,0,0),null);
+  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null, null,0,0),null);
   popId:number=0;
   userId:number=0;
-  salaire=0
-  groupeFk=0
+  salaire=0;
+  groupeFk=0;
   groupes: Groupe[] = [];
 
   ngOnInit(): void {
