@@ -95,7 +95,7 @@
             <div *ngFor="let c of this.population.certificats,let i= index" style="display: flex; justify-content: space-between; padding-top: 10px; padding-bottom: 10px">
               <input [(ngModel)]="c.nom"  class="archi-put" placeholder="nom">
               <input [(ngModel)]="c.organisme"  class="archi-put" placeholder="organisme">
-              <input type="date" [(ngModel)]="c.dateObtention"  class="archi-put">
+              <input type="date" [ngModel]="c.dateObtention| date : 'yyyy-MM-dd'" (ngModelChange)="c.dateObtention = $event"  class="archi-put">
             </div>
           </div>
 
@@ -114,28 +114,28 @@
 
           <div>
             <p class="archi-label">Hard Skills Periority*</p>
-            <input [(ngModel)]="population.populationSelectionPeriority.HardSkillPeriority" class="archi-put" placeholder="Hard skills">
+            <input [(ngModel)]="population.populationSelectionPeriority.hardSkillPeriority" class="archi-put" placeholder="Hard skills">
           </div>
           <br/>
           <div>
             <p class="archi-label">Soft Skills Periority*</p>
-            <input [(ngModel)]="population.populationSelectionPeriority.SoftSkillPeriority" class="archi-put" placeholder="Hard skills">
+            <input [(ngModel)]="population.populationSelectionPeriority.softSkillPeriority" class="archi-put" placeholder="Hard skills">
           </div>
           <br/><div>
           <p class="archi-label">Langue Periority*</p>
-          <input [(ngModel)]="population.populationSelectionPeriority.LanguePeriority" class="archi-put" placeholder="Hard skills">
+          <input [(ngModel)]="population.populationSelectionPeriority.languePeriority" class="archi-put" placeholder="Hard skills">
         </div>
           <br/><div>
           <p class="archi-label">Experience Periority*</p>
-          <input [(ngModel)]="population.populationSelectionPeriority.ExperiencePeriority" class="archi-put" placeholder="Hard skills">
+          <input type="number" [(ngModel)]="population.populationSelectionPeriority.experiencePeriority" class="archi-put" placeholder="Hard skills">
         </div>
           <br/><div>
           <p class="archi-label">Certificat Periority*</p>
-          <input [(ngModel)]="population.populationSelectionPeriority.CertificatPeriority" class="archi-put" placeholder="Hard skills">
+          <input type="number" [(ngModel)]="population.populationSelectionPeriority.certificatPeriority" class="archi-put" placeholder="Hard skills">
         </div>
           <br/><div>
           <p class="archi-label">University Periority*</p>
-          <input [(ngModel)]="population.populationSelectionPeriority.UniversityPeriority" class="archi-put" placeholder="Hard skills">
+          <input type="number" [(ngModel)]="population.populationSelectionPeriority.universityPeriority" class="archi-put" placeholder="Hard skills">
         </div>
           <br/>
 

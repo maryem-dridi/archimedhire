@@ -46,8 +46,7 @@ export class PopulationAddComponent implements OnInit {
          }
     else {
       this.population.langueObtentions=[new LangueObtention(new Date(),0,new Langue(Langage.Français,Niveau.B2))];
-      this.population.certificats=[new Certificat(0,"","",new Date())]
-
+      this.population.certificats=[new Certificat(0,"","",null)]
 
     }
 

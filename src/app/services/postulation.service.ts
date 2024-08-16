@@ -20,6 +20,10 @@ export class PostulationService {
     return this.http.post(`${this.baseUrl}/postuler_piece_jointe`,info,{/*headers*/});
   }
 
+  postulerParImage(info: FormData) {
+    return this.http.post(`${this.baseUrl}/postuler_par_image`,info,{/*headers*/});
+  }
+
   postuler(postulation: Postulation) {
     return this.http.post(`${this.baseUrl}/postuler`,postulation,{/*headers*/});
 
@@ -43,4 +47,6 @@ export class PostulationService {
 
     return this.http.get(`${this.baseUrl}`,{/*headers*/})
   }
+
+
 }

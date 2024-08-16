@@ -1,5 +1,5 @@
 export class Certificat {
-  public constructor( certificatId:number, nom:string,organisme:string,dateObtention:Date) {
+  public constructor( certificatId:number, nom:string,organisme:string,dateObtention:Date|null) {
     this.certificatId = certificatId;
     this.nom = nom;
     this.organisme = organisme;
@@ -8,5 +8,5 @@ export class Certificat {
   certificatId:number;
   nom:string;
   organisme:string;
-  dateObtention:Date;
+  dateObtention:Date|null;
 }

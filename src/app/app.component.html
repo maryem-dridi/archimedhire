@@ -18,13 +18,13 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
-      <a href="index.html" class="nav-item nav-link">Home</a>
-      <a href="/projet" class="nav-item nav-link">Projets</a>
-      <a href="/groupe" class="nav-item nav-link">Groupes</a>
+      <a [class.active]="path=='/'" href="/" class="nav-item nav-link">Home</a>
+      <a [class.active]="path=='/projet'" href="/projet" class="nav-item nav-link">Projets</a>
+      <a [class.active]="path=='/groupe'" href="/groupe" class="nav-item nav-link">Groupes</a>
       <a [class.active]="path=='/salarie'"  href="/salarie" class="nav-item nav-link">Salarie</a>
 
       <div class="nav-item dropdown">
-        <a [class.active]="path=='/populations'" (click)="changePage('postuler')" href="/populations" class="nav-item nav-link">Populations</a>
+        <a [class.active]="path=='/populations'||path=='/population/add'" (click)="changePage('postuler')" href="/populations" class="nav-item nav-link">Populations</a>
         <div class="dropdown-menu fade-down m-0">
           <a href="/population/add" class="dropdown-item">ajouter population</a>
         </div>

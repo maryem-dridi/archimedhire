@@ -23,7 +23,7 @@ export class FormPostulationComponent implements OnInit {
   constructor(private us:UserStoreService,private router:Router,private route: ActivatedRoute,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
 
   id:number = 0;
-  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null,null,0,0),null);
+  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null,null,0,0,""),null);
   indice: number=1;
 
 
@@ -51,15 +51,17 @@ export class FormPostulationComponent implements OnInit {
   }
 
   public postuler_avec_image() {
-    if (this.postulation.user.image) {
+    if (this.postulation.user.imageFile) {
+      this.postulation.user.langueObtentions=[];
       const formData = new FormData();
-      formData.append('pdfFile', this.postulation.user.image);
+      formData.append('image', this.postulation.user.imageFile);
       formData.append('postulationObj', JSON.stringify(this.postulation));
-      this.postulationService.postulerPieceJointe(formData)
+      this.postulationService.postulerParImage(formData)
         .subscribe(response => {
           this.toast.success({detail: "Success", summary: 'Postulation Success', duration: 5000});
         }, error => {
           this.toast.error({detail: "Error", summary: error.error.message, duration: 5000});
+          console.log(error)
         });
     } else {
       this.toast.error({detail: "ERROR", summary: 'File is missing!', duration: 5000});
@@ -89,13 +91,15 @@ export class FormPostulationComponent implements OnInit {
   }
 
   public prev(){
+    if(this.indice==1)
+      this.router.navigate(['/populations',this.id]);
     this.indice-=1
   }
 
   onFileSelected($event: Event) {
     const input = $event.target as HTMLInputElement;
     if (input.files) {
-      this.postulation.user.image = input.files[0];
+      this.postulation.user.imageFile = input.files[0];
     }
   }
 

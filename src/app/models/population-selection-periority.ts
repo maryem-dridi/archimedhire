@@ -1,16 +1,16 @@
 export class PopulationSelectionPeriority {
-  public constructor(CertificatPeriority:number,LanguePeriority:number,UniversityPeriority:number,SoftSkillPeriority:number,HardSkillPeriority:number,ExperiencePeriority:number) {
-    this.CertificatPeriority = CertificatPeriority;
-    this.LanguePeriority = LanguePeriority;
-    this.UniversityPeriority = UniversityPeriority;
-    this.SoftSkillPeriority = SoftSkillPeriority;
-    this.HardSkillPeriority = HardSkillPeriority;
-    this.ExperiencePeriority = ExperiencePeriority;
+  public constructor(certificatPeriority:number,languePeriority:number,universityPeriority:number,softSkillPeriority:number,hardSkillPeriority:number,experiencePeriority:number) {
+    this.certificatPeriority = certificatPeriority;
+    this.languePeriority = languePeriority;
+    this.universityPeriority = universityPeriority;
+    this.softSkillPeriority = softSkillPeriority;
+    this.hardSkillPeriority = hardSkillPeriority;
+    this.experiencePeriority = experiencePeriority;
   }
-  CertificatPeriority:number|undefined;
-  LanguePeriority:number|undefined;
-  UniversityPeriority:number|undefined;
-  SoftSkillPeriority:number|undefined;
-  HardSkillPeriority:number|undefined;
-  ExperiencePeriority:number|undefined;
+  certificatPeriority:number|undefined;
+  languePeriority:number|undefined;
+  universityPeriority:number|undefined;
+  softSkillPeriority:number|undefined;
+  hardSkillPeriority:number|undefined;
+  experiencePeriority:number|undefined;
 }
