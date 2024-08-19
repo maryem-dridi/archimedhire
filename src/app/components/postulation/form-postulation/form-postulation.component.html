@@ -49,7 +49,7 @@
           </div>
           <br/>
           <p class="archi-label">Image *</p>
-          <input type="file" [(ngModel)]="postulation.user.imageFile" (change)="onFileSelected($event)" class="form-control rounded-3 bg-white" id="pieceJointe"/>
+          <input type="file" [(ngModel)]="postulation.user.imageFile" (change)="onFileSelected($event)" class="form-control rounded-3 bg-white  " id="pieceJointe"/>
           <br/>
           <p>En soumettant ce formulaire, j'accepte que les données saisies dans ce formulaire soient utilisées pour recevoir des informations de la part d'Archimed, et utilisées dans les conditions décrites dans la Politique de confidentialité.</p>
           <div style="display: flex;justify-content: space-between">
@@ -60,7 +60,7 @@
 
         </div>
         <div *ngIf="indice==2" class="archi-card">
-          <p class="archi-h2">Formulaire d'ajout d'une population</p>
+          <p class="archi-h2">Formulaire de postulation</p>
 
           <div>
             <div style="display: flex; justify-content: space-between" >
@@ -93,13 +93,25 @@
           </div>
         </div>
         <div *ngIf="indice==3" class="archi-card">
-          <p class="archi-h2">Formulaire d'ajout d'une population</p>
+          <p class="archi-h2">Formulaire de postulation</p>
 
 
 
           <div>
             <p class="archi-label">Hard skills*</p>
             <input [(ngModel)]="this.postulation.user.hardskills"  class="archi-put" placeholder="Hard skills">
+          </div>
+          <br/>
+
+          <div>
+            <p class="archi-label">LinkedIN*</p>
+            <input [(ngModel)]="this.postulation.user.linkedIN"  class="archi-put" placeholder="LinkedIN">
+          </div>
+          <br/>
+
+          <div>
+            <p class="archi-label">GitHub*</p>
+            <input [(ngModel)]="this.postulation.user.gitHub"  class="archi-put" placeholder="GitHub">
           </div>
           <br/>
 

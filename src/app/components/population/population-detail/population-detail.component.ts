@@ -7,6 +7,7 @@ import {NgToastService} from "ng-angular-popup";
 import {PopulationType} from "../../../models/population-type";
 import {PopulationSelectionPeriority} from "../../../models/population-selection-periority";
 import {Experience} from "../../../models/Experience";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-population-detail',
@@ -16,12 +17,15 @@ import {Experience} from "../../../models/Experience";
 export class PopulationDetailComponent  implements OnInit {
 
   id:number = 0;
+  role:string="";
   population:Population = new Population(0,"","","",Experience.Entry_Level, [],[],PopulationType.pse,[],new PopulationSelectionPeriority(0,0,0,0,0,0));
 
-  constructor(private router:Router,private route: ActivatedRoute,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
+  constructor(private router:Router,private route: ActivatedRoute, private authService:AuthService,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.role = this.authService.getRoleFromToken();
+
     this.populationService.getData(this.id).subscribe(
       data=> {
         this.population=data

@@ -36,8 +36,8 @@
         </div>
         <div style="display: flex;justify-content: space-between">
           <a [routerLink]="['/population/postuler/', population.id]" class="btn btn-primary py-3 px-5 mt-2" href="">Postuler</a>
-          <a [routerLink]="['/population/modifier/', population.id]" class="btn btn-primary archi-warning py-3 px-5 mt-2" href=""> <i class="fa fa-edit"></i> Modifier</a>
-          <a class="btn btn-secondary archi-warning py-3 px-5 mt-2" (click)="delete()"> <i class="fa fa-trash"></i> Delete </a>
+          <a *ngIf="this.role=='admin'" [routerLink]="['/population/modifier/', population.id]" class="btn btn-primary archi-warning py-3 px-5 mt-2" href=""> <i class="fa fa-edit"></i> Modifier</a>
+          <a *ngIf="this.role=='admin'" class="btn btn-secondary archi-warning py-3 px-5 mt-2" (click)="delete()"> <i class="fa fa-trash"></i> Delete </a>
         </div>
       </div>
     </div>
@@ -57,12 +57,13 @@
        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let postulation of this.population.postulations">
         <div class="team-item bg-light">
           <div class="overflow-hidden">
-            <img class="img-fluid" src="/assets/img/team-1.jpg" alt="">
+
+            <img class="img-fluid" src="http://localhost:5248/uploads/{{postulation.user.image}}" alt="">
           </div>
           <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
             <div class="bg-light d-flex justify-content-center pt-2 px-1">
-              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-linkedin"></i></a>
-              <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-github"></i></a>
+              <a class="btn btn-sm-square btn-primary mx-1" href="{{postulation.user.linkedIN}}"><i class="fab fa-linkedin"></i></a>
+              <a class="btn btn-sm-square btn-primary mx-1" href="{{postulation.user.gitHub}}"><i class="fab fa-github"></i></a>
               <a class="btn btn-sm-square btn-primary mx-1" [routerLink]="['postulation',postulation.user.id]"><i class="fa fa-info-circle"></i></a>
             </div>
           </div>

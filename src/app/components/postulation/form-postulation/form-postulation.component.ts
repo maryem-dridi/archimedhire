@@ -23,7 +23,7 @@ export class FormPostulationComponent implements OnInit {
   constructor(private us:UserStoreService,private router:Router,private route: ActivatedRoute,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService) { }
 
   id:number = 0;
-  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null,null,0,0,""),null);
+  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null,null,0,0,"","",""),null);
   indice: number=1;
 
 
@@ -52,13 +52,13 @@ export class FormPostulationComponent implements OnInit {
 
   public postuler_avec_image() {
     if (this.postulation.user.imageFile) {
-      this.postulation.user.langueObtentions=[];
       const formData = new FormData();
       formData.append('image', this.postulation.user.imageFile);
       formData.append('postulationObj', JSON.stringify(this.postulation));
       this.postulationService.postulerParImage(formData)
         .subscribe(response => {
           this.toast.success({detail: "Success", summary: 'Postulation Success', duration: 5000});
+          this.router.navigate(['/populations',this.id])
         }, error => {
           this.toast.error({detail: "Error", summary: error.error.message, duration: 5000});
           console.log(error)
@@ -79,8 +79,6 @@ export class FormPostulationComponent implements OnInit {
       error: (err) => {
         console.log(err)
         this.toast.error({detail:err.statusText, summary:err.error.title, duration: 5000});
-        //this.toast.error({detail:err.statusText, summary:err.error.errors.message, duration: 5000});
-
       },
     });
 

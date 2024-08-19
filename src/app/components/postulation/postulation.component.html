@@ -92,14 +92,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editGroupModalLabel">Modifier le Groupe</h5>
+        <h5 class="modal-title" id="editGroupModalLabel">Recruter {{postulation.user.prenom}} {{postulation.user.nom}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
           <div class="form-group">
             <label for="sa">Salaire</label>
-            <input type="number" id="sa" [(ngModel)]="salaire" class="form-control archi-put" placeholder="Salaire du l'employé" />
+            <input type="number" min="0.00" max="10000.00" step="0.01" id="sa" [(ngModel)]="salaire" class="form-control archi-put" placeholder="Salaire du l'employé" />
             <br/>
               <label for="gr">Groupe</label>
               <select id="gr" class="archi-put" [(ngModel)]="groupeFk" style="width: 40%" >

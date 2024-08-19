@@ -23,7 +23,7 @@ export class PostulationComponent implements OnInit {
 
   constructor(private router:Router,private groupeService:GroupeService,private salarieService:SalarieService,private populationService:PopulationService,private  postulationService:PostulationService,private toast:NgToastService, private  route:ActivatedRoute) {
   }
-  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null, null,0,0,""),null);
+  postulation = new Postulation("",new Date(),0,0,new User(0, "","","",Experience.Entry_Level, [],[],"","","","",null, null,0,0,"","",""),null);
   popId:number=0;
   userId:number=0;
   salaire=0;
@@ -55,7 +55,7 @@ export class PostulationComponent implements OnInit {
   }
   recruter(){
     this.submit=true;
-    this.salarieService.recruitSalarie(this.userId,this.salaire,this.groupeFk).subscribe({next: (res) => {
+    this.salarieService.recruitSalarie(this.popId,this.userId,this.salaire,this.groupeFk).subscribe({next: (res) => {
 
       this.toast.success({detail:"SUCCESS", summary:res.toString(), duration: 5000});
 
@@ -63,6 +63,7 @@ export class PostulationComponent implements OnInit {
     },
       error: (err) => {
       this.toast.error({detail:err.statusText, summary:err.error.title, duration: 5000});
+      console.log(err)
       //this.toast.error({detail:err.statusText, summary:err.error.errors.message, duration: 5000});
 
     },

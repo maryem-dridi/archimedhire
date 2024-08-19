@@ -101,7 +101,6 @@ export class PopulationAddComponent implements OnInit {
 
   modifier() {
     this.filtrage()
-    this.population.langueObtentions=[];
     console.log(this.population)
     this.populationService.updateData(this.id,this.population).subscribe( {next: (res) => {
         this.toast.success({detail:"SUCCESS", summary:res.toString(), duration: 5000});

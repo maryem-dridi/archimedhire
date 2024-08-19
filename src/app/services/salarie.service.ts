@@ -11,8 +11,8 @@ export class SalarieService {
 
   constructor(private http: HttpClient) {}
 
-  recruitSalarie(id: number, salaire: number,groupeFk: number): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/recruter/${id}/${salaire}/${groupeFk}`, null);
+  recruitSalarie(popId: number,userId: number, salaire: number,groupeFk: number): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/recruter/${popId}/${userId}/${salaire}/${groupeFk}`, null);
   }
 
   getAllSalaries(): Observable<Salarie[]> {

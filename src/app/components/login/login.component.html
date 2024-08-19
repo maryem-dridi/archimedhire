@@ -8,8 +8,8 @@
         </div>
       </div>
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-        <h6 class="section-title bg-white text-start text-primary pe-3">Sign in</h6>
-        <h1 class="mb-4 archi-h1">Welcome to Archimed</h1>
+        <h6 class="section-title bg-white text-start text-primary pe-3">Se Connecter</h6>
+        <h1 class="mb-4 archi-h1">Bienvenue chez Archimed</h1>
         <form [formGroup]="this.loginForm" (ngSubmit)="onSubmit()">
           <div class="row g-3">
             <div class="col-12">
@@ -23,19 +23,19 @@
             <div class="col-12">
               <div class="form-floating">
                 <input type="Password" formControlName="Password" class="form-control" id="Password" placeholder="Subject">
-                <label for="subject">Password</label>
+                <label for="subject">Mot de passe</label>
 
                 <small *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('required','Password')" class="text-danger">*Password is required*</small>
                 <small *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('pattern','Password')" class="text-danger">*Le format est incorrect*</small>
 
-                <div class="form-inline fr mt-4"> <a id="forgot" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-bottom">Forgot Password?</a> </div>
+                <div class="form-inline fr mt-4"> <a id="forgot" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-bottom">Mot de passe oublié ?</a> </div>
               </div>
             </div>
             <div class="col-12">
-              <button class="btn btn-primary w-100 py-3" type="submit">Login</button>
+              <button class="btn btn-primary w-100 py-3" type="submit">Se Connecter</button>
             </div>
           </div>
-          <div class="text-center pt-4 text-muted">Don't have an account? <a id="forgot" href="#" routerLink="/signup" class="text-bottom">Sign up</a> </div>
+          <div class="text-center pt-4 text-muted">vous n'avez pas de compte ?<a id="forgot" href="#" routerLink="/signup" class="text-bottom">S'inscrire</a> </div>
 
         </form>
       </div>

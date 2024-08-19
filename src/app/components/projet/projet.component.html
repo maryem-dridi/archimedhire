@@ -46,23 +46,23 @@
         <h5 class="modal-title" id="addProjectModalLabel">Ajouter un Projet</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body ">
         <form class="form">
           <div class="input-container">
             <label for="nom2">Nom projet</label>
             <input type="text" id="nom2" class="form-control" placeholder="Nom" name="nom" [(ngModel)]="projet_add.nom" required>
           </div>
-          <div class="input-container">
-            <label for="dateDebut" class="form-label">Date de début</label>
+          <div class="input-container mb-2">
+            <label for="dateDebut" class="form-label mb-0">Date de début</label>
             <input type="date" id="dateDebut" class="form-control" name="dateDebut" [(ngModel)]="projet_add.dateDebut" required>
           </div>
           <div class="input-container">
-            <label for="dateFin" class="form-label">Date de fin</label>
+            <label for="dateFin" class="form-label mb-0">Date de fin</label>
             <input type="date" id="dateFin" class="form-control" name="dateFin" [(ngModel)]="projet_add.dateFin" required>
           </div>
           <div class="input-container">
             <label for="description">Description</label>
-            <input type="text" id="description" class="form-control" placeholder="Description" name="description" [(ngModel)]="projet_add.description" required>
+            <textarea type="text" id="description" style="background-color: white; color: blue; width: 300px; height: 50px; border-radius: 10px" class="form-control" placeholder="Description" name="description" [(ngModel)]="projet_add.description" required></textarea>
           </div>
           <div class="input-container">
             <label for="strategieAdopte">Stratégie Adoptée</label>
@@ -70,8 +70,8 @@
           </div>
           <div class="input-container">
             <label for="groupeFk" class="form-label">Groupe</label>
-            <select id="groupeFk" class="form-control" [(ngModel)]="projet_add.groupeFk" name="groupeFk" required>
-              <option *ngFor="let groupe of groupes" [value]="groupe.groupeId">{{ groupe.nom }}</option>
+            <select id="groupeFk" style="background-color: white; color: blue; width: 300px; height: 50px; border-radius: 10px" class="form-control" [(ngModel)]="projet_add.groupeFk" name="groupeFk" required>
+              <option class="form-control" *ngFor="let groupe of groupes" [value]="groupe.groupeId">{{ groupe.nom }}</option>
             </select>
           </div>
           <button type="button" class="btn btn-primary" (click)="ajouterProjet()">Ajouter</button>
@@ -106,7 +106,7 @@
           </div>
           <div class="input-container">
             <label for="description2">Description</label>
-            <input type="text" id="description2" class="form-control" placeholder="Description" name="description" [(ngModel)]="projet_edit.description" required>
+            <textarea id="description2" class="form-control" placeholder="Description" name="description" [(ngModel)]="projet_edit.description" required></textarea>
           </div>
           <div class="input-container">
             <label for="strategieAdopte2">Stratégie Adoptée</label>
