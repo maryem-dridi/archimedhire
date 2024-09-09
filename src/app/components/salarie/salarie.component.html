@@ -11,7 +11,7 @@
       <div class="col-lg-4 col-md-6 wow fadeInUp" *ngFor="let salarie of salaries; let i = index">
         <div class="course-item bg-light">
           <div class="position-relative overflow-hidden">
-            <img class="img-fluid" src="assets/img/salarie.jpeg" alt="">
+            <img class="img-fluid rounded-3" src="http://localhost:5248/uploads/{{salarie.image}}" alt="">
             <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
             </div>
           </div>
@@ -20,20 +20,16 @@
           </div>
           <div class="d-flex border-top">
             <small class="flex-fill text-center border-end py-2"><i class="fa fa-envelope text-primary me-2"></i>{{salarie.email}}</small>
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-users text-primary me-2"></i>{{salarie.groupe.nom}}</small>
-
-            <small class="flex-fill text-center py-2" *ngIf="salarie.adresse==''"><i class="fa fa-location-arrow text-primary me-2"></i>{{salarie.adresse}}</small>
+            <small class="flex-fill text-center py-2" *ngIf="salarie.adresse==''"><i class="fa fa-location-arrow text-primary me-2"></i></small>
           </div>
           <div class="d-flex border-top">
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-users text-primary me-2"></i></small>
-            <select id="groupeFk2" class="form-control" [(ngModel)]="salarie.groupeFk" name="groupeFk" required (change)="affecterSalarieAuGroupe(salarie.id,salarie.groupeFk)">
-              <option *ngFor="let groupe of groupes" [value]="groupe.groupeId">{{ groupe.nom }}</option>
-            </select>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-users text-primary me-2"></i>{{salarie.groupe.nom|titlecase}}</small>
+
 
           </div>
-          <div class="d-flex border-top center_section">
-            <button class="btn btn-danger flex-fill" (click)="deleteSalarie(salarie.id)">Delete</button>
-            <button class="btn btn-primary flex-fill" (click)="openEditModal(salarie)" data-bs-toggle="modal" data-bs-target="#editSalarieModal">Edit</button>
+          <div class="d-flex border-top center_section justify-content-around">
+            <button class="btn archi-warning" style="width: 40%" (click)="deleteSalarie(salarie.id)"><i class="fa fa-trash"></i> Delete</button>
+            <button class="btn btn-primary" style="width: 40%" (click)="openEditModal(salarie)" data-bs-toggle="modal" data-bs-target="#editSalarieModal"><i class="fa fa-edit"></i>Edit</button>
 
           </div>
         </div>
@@ -51,7 +47,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" *ngIf="selectedSalarie">
-        <form class="form">
           <div class="input-container">
             <label for="nom">Nom</label>
             <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" [(ngModel)]="selectedSalarie.nom" [disabled]="true">
@@ -62,11 +57,16 @@
           </div>
           <div class="input-container">
             <label for="salaire">Salaire</label>
-            <input type="number" class="form-control" id="salaire" name="salaire" [(ngModel)]="newSalary" placeholder="Salaire" [required]="true">
+            <input type="number" class="form-control" id="salaire" name="salaire" [(ngModel)]="selectedSalarie.salaire" placeholder="Salaire" [required]="true">
           </div>
+        <div class="input-container">
+          <label for="groupe">Groupe</label>
+          <select class="form-control" style="background-color: #FFFFFF; border-radius: 5px" id="groupe" [(ngModel)]="selectedSalarie.groupe.nom" class="form-control" >
+            <option *ngFor="let g of groupes">{{ g.nom }}</option>
+          </select>        </div>
+
 
           <button type="button" class="btn btn-primary" (click)="updateSalarie()" data-bs-dismiss="modal">Enregistrer</button>
-        </form>
       </div>
     </div>
   </div>

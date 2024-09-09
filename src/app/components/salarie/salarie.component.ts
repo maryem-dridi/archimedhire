@@ -18,10 +18,7 @@ export class SalarieComponent implements OnInit {
   selectedSalarie: Salarie | null = null;
   newSalary: number = 0;
 
-  constructor(private salarieService: SalarieService,private groupeService:GroupeService, private toast: NgToastService) {}
-
-  ngOnInit(): void {
-    this.loadSalaries();
+  constructor(private salarieService: SalarieService,private groupeService:GroupeService, private toast: NgToastService) {
     this.groupeService.getAllGroupes().subscribe(
       (data) => {
         this.groupes = data;
@@ -29,25 +26,40 @@ export class SalarieComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+    this.loadSalaries();
+
+  }
+
   loadSalaries(): void {
     this.salarieService.getAllSalaries().subscribe({
-      next: (salaries: Salarie[]) => this.salaries = salaries,
-      error: (err: any) => this.errorMessage = err.message || 'Error loading salaries.'
+      next: (salaries: Salarie[]) => {
+        this.salaries = salaries
+        console.log(this.salaries)
+
+      },
+      error: (err: any) => {
+        this.errorMessage = err.message || 'Error loading salaries.'
+        console.log(err)
+      }
     });
   }
 
   deleteSalarie(id: number | undefined ): void {
     this.salarieService.deleteSalarie(id).subscribe({
-      next: () => {
+      next: (res) => {
+        this.toast.success({detail:"SUCCESS", summary:res.title, duration: 5000});
         this.salaries = this.salaries.filter(s => s.id !== id);
       },
-      error: (err: any) => this.errorMessage = err.message || 'Error deleting salarie.'
+      error: (err: any) => {
+        this.toast.error({detail:err.statusText, summary:err.error.title, duration: 5000});
+      }
     });
   }
 
   openEditModal(salarie: Salarie): void {
     // @ts-ignore
-    this.selectedSalarie = { ...salarie };
+    this.selectedSalarie = salarie;
     console.log(this.selectedSalarie)
   }
 
